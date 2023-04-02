@@ -143,6 +143,13 @@ body{
     display: flex;
     align-items: center;
 }
+
+.header_search .search {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .header_search-input{
     flex: 1;
     height: 100%;
@@ -812,3 +819,11 @@ body{
     cursor: pointer;
 }
 
+.kqTimKiem {
+    margin: 0;
+    padding: 0;
+}
+
+.kqtimkiem {
+    margin: 0;
+}

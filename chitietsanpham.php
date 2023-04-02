@@ -1,9 +1,14 @@
 <?php 
     require "connect.php";
-    $productId = $_GET['id'];
-    $sql = "SELECT sanpham.*, chitietsanpham.* FROM sanpham JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.id=".$productId;
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
+    if (isset($_GET['id'])) {
+        $productId = $_GET['id'];
+        $sql = "SELECT sanpham.*, chitietsanpham.* FROM sanpham JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.id=".$productId;
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+    } else {
+        echo "Error";
+    }
+    
 
     function currency_format($number, $suffix = 'đ') {
         if (!empty($number)) {
@@ -50,15 +55,9 @@
                     </ul>
                     <ul class="header__navbar--list">
                         <li class="list-item">
-                            <a href="" class="list-item-iconlink">
-                                <i class="ti-bell list-item-icon"></i>
-                                Thông báo
-                            </a>
-                        </li>
-                        <li class="list-item">
-                            <a href="" class="list-item-iconlink">
-                                <i class="ti-help-alt list-item-icon"></i>
-                                Trợ giúp
+                            <a href="aboutus.php" class="list-item-iconlink">
+                                <i class="ti-info list-item-icon"></i>
+                                Giới thiệu
                             </a>
                         </li>
                         <a class="list-item list-item-bold list-item-separate" onclick="showDangKi()">Đăng kí</a>
@@ -70,10 +69,13 @@
                     <a href="index.php"><img src="./assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
-                        <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input">
-                        <button class="header_search-button">
-                            <a href="timkiemtrangchu.html" style="text-decoration: none;"><i class="ti-search header_search-icon"></i></a>
-                        </button>
+                        <form action="timkiem.php" method="GET" class="search">
+                            <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input" name="keyword">
+                            <button class="header_search-button" type="submit">
+                                <!-- <a href="timkiem.php" style="text-decoration: none;"></a> -->
+                                <i class="ti-search header_search-icon"></i>
+                            </button>
+                        </form>
                     </div>
                  <div class="header_cart">
                     <a href="#" onclick="login_required()" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>

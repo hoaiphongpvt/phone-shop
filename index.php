@@ -37,15 +37,9 @@
                     </ul>
                     <ul class="header__navbar--list">
                         <li class="list-item">
-                            <a href="demo/aboutus.html" class="list-item-iconlink">
+                            <a href="aboutus.php" class="list-item-iconlink">
                                 <i class="ti-info list-item-icon"></i>
                                 Giới thiệu
-                            </a>
-                        </li>
-                        <li class="list-item">
-                            <a href="" class="list-item-iconlink">
-                                <i class="ti-help-alt list-item-icon"></i>
-                                Trợ giúp
                             </a>
                         </li>
                         <a class="list-item list-item-bold list-item-separate" onclick="showDangKi()">Đăng kí</a>
@@ -57,10 +51,13 @@
                     <a href="index.php"><img src="assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
-                        <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input">
-                        <button class="header_search-button">
-                            <a href="timkiemtrangchu.html" style="text-decoration: none;"><i class="ti-search header_search-icon"></i></a>
-                        </button>
+                        <form action="timkiem.php" method="GET" class="search">
+                            <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input" name="keyword">
+                            <button class="header_search-button" type="submit">
+                                <!-- <a href="timkiem.php" style="text-decoration: none;"></a> -->
+                                <i class="ti-search header_search-icon"></i>
+                            </button>
+                        </form>
                     </div>
                  <div class="header_cart">
                     <a href="#" onclick="login_required()" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
@@ -108,8 +105,8 @@
                             }
                             $sql = "SELECT * FROM sanpham";
                             $result = $conn->query($sql);
-                            $count = 0;
-                            $group = "<div class='phone-group-item'>";
+                            // $count = 0;
+                            // $group = "<div class='phone-group-item'>";
                             while($row = $result->fetch_assoc()) {
                                 $item = "<div class='phone-phone-item'>";
                                 $item .= "<a href='chitietsanpham.php?id=".$row['ID']."'><img src=".$row["HINHANH"]." class='phone-img'></a>";
@@ -308,6 +305,7 @@
         </div>
         <?php require "footer.php"?>
     </div>
+    <script src="./assets/slider/banner.js"></script>
     <div id="dangki" style="display: none;">
         <div class="modal">
             <div class="modal_overlay"></div>
