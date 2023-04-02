@@ -251,19 +251,27 @@ body{
     color: #cd1818;
     cursor: pointer;
 }
-.banner{
-    margin-top: 12px;
-    border: 1px solid var(--boder-color);
-    border-radius: 5px;
-}
-.banner-img{
+
+#banner-img{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     padding: 5px;
+    transition: transform 0.9s ease;
+    transform: translateX(100%);
 }
-.banner{
+#banner{
+    height: 270px;
     display: flex;
+    position: relative;
+    overflow: hidden;
+    object-fit: contain;
     cursor: pointer;
+    border: 1px solid var(--boder-color);
+    border-radius: 5px;
 }   
+
 .phone-heading{
     margin-top: 50px;
 }

@@ -1,17 +1,33 @@
+<?php 
+    require "connect.php";
+    $productId = $_GET['id'];
+    $sql = "SELECT sanpham.*, chitietsanpham.* FROM sanpham JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.id=".$productId;
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    function currency_format($number, $suffix = 'đ') {
+        if (!empty($number)) {
+            return number_format($number, 0, ',', '.') . "{$suffix}";
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Apple iPhone 13 Pro Max</title>
+    <title>Thông tin chi tiết <?php echo $row['TEN']?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/apple/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/logo-banner/logotheps.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map">
     <link rel="stylesheet" href="./assets/css_js/base.css">
     <link rel="stylesheet" href="./assets/css_js/main.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="./assets/css_js/style.js"></script>
+    
 </head>
 <body>
     <div class="app">
@@ -20,7 +36,7 @@
                 <nav class="header_navbar">
                     <ul class="header__navbar--list">
                         <li class="list-item list-item-separate">
-                        <a href="index.html" class="list-item-iconlink">Trang chủ</a> 
+                        <a href="index.php" class="list-item-iconlink">Trang chủ</a> 
                         </li>
                         <li class="list-item">
                             <span class="list-item-title">Liên hệ</span>
@@ -51,7 +67,7 @@
                 </nav>
                <div class="header_with-search">
                    <div class="header__logo">
-                    <img src="./assets/img/logo-banner/logotheps.png" class="header__logo-img">
+                    <a href="index.php"><img src="./assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
                         <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input">
@@ -65,7 +81,7 @@
                 </div>
             </div>
         </header>
-        <header class="header2">
+        <!-- <header class="header2">
             <div class="grid">
                 <nav class="brand">
                     <ul class="list_brand">
@@ -77,24 +93,24 @@
                     </ul>
                  </nav>
             </div>
-        </header>
+        </header> -->
         <div class="container-product">
             <div class="grid">
-                <div class="banner">
-                    <img src="./assets/apple/img/banner-product.png" class="banner-img">
+                <div id="banner">
+                    <img src="./assets/apple/img/banner-product.png" id="banner-img">
                 </div>
                 <div class="name-product">
-                    <p>Apple iPhone 13 Pro Max</p>
+                    <p><?php echo $row['TEN']?></p>
                 </div>
                 <div class="general-infomation">
                     <div class="img-product">
-                        <img src="./assets/apple/img/iphone-13-pro-max.jpg" class="phone-img-product"> 
+                        <img src=<?php echo $row["HINHANH"]?> class="phone-img-product"> 
                     </div>
                     <div>
                         <div class="option-product">
                             <div class="price-product">
                                 <span>Giá cực sốc:</span>
-                                <p>32.990.000đ</p>
+                                <p><?php echo currency_format($row["GIA"])?></p>
                             </div>
                             </div>
                             <div class="add-to-cart">
@@ -108,27 +124,26 @@
 
                 <div class="detailed-configuration">
                         <div class="detailed-configuration-info">
-                            <h3>Cấu hình điện thoại iPhone 13 Pro Max</h3>
+                            <h3>Cấu hình điện thoại <?php echo $row["TEN"]?></h3>
                             <ul class="detailed-configuration-info-list">
-                                <li>Hệ điều hành: iOS 15</li>
-                                <li>Chipset: Apple A15 Bionic (5 nm)</li>
-                                <li>Độ phân giải: 1284 x 2778 pixels</li>
-                                <li>Màn hình rộng: 6.7 inches</li>
-                                <li>Camera sau: 3 Camera: 12MP + 12MP + 12MP + TOF 3D LiDAR</li>
-                                <li>RAM: 8 GB</li>
-                                <li>Bộ nhớ trong ( Rom): 512GB</li>
-                                <li>Camera trước: 12 MP, f/2.2</li>
+                                <li>Hệ điều hành: <?php echo $row["HDH"]?></li>
+                                <li>Màn hình: <?php echo $row["TS_MANHINH"]?></li>
+                                <li>Chip: <?php echo $row["CHIP"]?></li>
+                                <li>Sim: <?php echo $row["SIM"]?></li>
+                                <li>Camera: <?php echo $row["TS_CAMERA"]?></li>
+                                <li>Bộ nhớ: <?php echo $row["TS_BONHO"]?></li>
+                                <li>Pin: <?php echo $row["TS_PIN"]?></li>
                             </ul>
                         </div>
                         <div class="detailed-configuration-img">
-                            <img src="./assets/apple/img/iphone-13-pro-max-cofi.jpg" width="100%">
+                            <img src=<?php echo $row["ANHTHONGSO"]?> width="100%">
                         </div>
                     </div>
                     <div class="review">
 
                 </div>
                 <div class="desc">
-                    <h3 class="desc_title">Đánh giá chi tiết iPhone 13 Pro Max</h3>
+                    <h3 class="desc_title">Đánh giá chi tiết <?php echo $row["TEN"]?></h3>
                     <p class="desc_detail">Đây là mô tả chi tiết</p>
                 </div>
             </div>
@@ -267,5 +282,6 @@
             </div>
         </div>
     </div>
+    <script src="./assets/slider/banner.js"></script>
 </body>
 </html>

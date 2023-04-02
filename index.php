@@ -23,7 +23,7 @@
                 <nav class="header_navbar">
                     <ul class="header__navbar--list">
                         <li class="list-item list-item-separate">
-                            <a href="index.html" class="list-item-iconlink">Trang chủ</a>
+                            <a href="index.php" class="list-item-iconlink">Trang chủ</a>
                         </li>
                         <li class="list-item">
                             <span class="list-item-title">Liên hệ</span>
@@ -54,7 +54,7 @@
                 </nav>
                <div class="header_with-search">
                    <div class="header__logo">
-                    <img src="assets/img/logo-banner/logotheps.png" class="header__logo-img">
+                    <a href="index.php"><img src="assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
                         <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input">
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </header>
-        <header class="header2">
+        <!-- <header class="header2">
             <div class="grid">
                 <nav class="brand">
                     <ul class="list_brand">
@@ -80,19 +80,19 @@
                     </ul>
                  </nav>
             </div>
-        </header>
+        </header> -->
         <div class="container">
            <div class="grid">
                <div class="content">
-                <div class="banner">
-                        <img src="assets/img/logo-banner/The PS logo (1).png" class="banner-img">
+                <div id="banner">
+                        <img src="assets/img/logo-banner/The PS logo (1).png" id="banner-img">
                     <div>
-                        <img src="assets/img/logo-banner/banner2.jpg" class="banner-img" height="100%">
+                        <img src="assets/img/logo-banner/banner2.jpg" id="banner-img" height="100%">
                     </div>
                    </div>
                 </div>
                 <div class="banner">
-                    <img src="assets/img/logo-banner/banner.png" class="banner-img">
+                    <img src="assets/img/logo-banner/banner.png" id="banner-img">
                 </div>
                 <div id="apple">
                     <div class="phone-heading">
@@ -112,8 +112,8 @@
                             $group = "<div class='phone-group-item'>";
                             while($row = $result->fetch_assoc()) {
                                 $item = "<div class='phone-phone-item'>";
-                                $item .= "<a href='chitietsanpham.php'><img src=".$row["HINHANH"]." class='phone-img'></a>";
-                                $item .= "<p  class='phone-name'><a href='chitietsanpham.php'>".$row["TEN"]."</a></p>";
+                                $item .= "<a href='chitietsanpham.php?id=".$row['ID']."'><img src=".$row["HINHANH"]." class='phone-img'></a>";
+                                $item .= "<p  class='phone-name'><a href='chitietsanpham.php?id=".$row['ID']."'>".$row["TEN"]."</a></p>";
                                 $item .= "<h3 class='phone-price'>".currency_format($row["GIA"]) ."</h3>";
                                 $item .= "<div class='phone-vote'><p class='value'>".$row["DANHGIA"]."</p><i class='ti-star'></i></div>";
                                 $item .= "<ul class='phone-parameter'>
