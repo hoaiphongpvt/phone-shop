@@ -575,20 +575,17 @@ body{
     justify-content: center;
     align-items: center;
 }
-.icon-page1 a,
-.icon-page2 a{
+.icon-page a{
     font-size: 30px;
     margin: 0 40px;
 }
-.icon-page1 a,
-.icon-page2 a,
-.page1 a,
-.page2 a{
+.icon-page a,
+
+.page a {
     text-decoration: none;
     color: var(--text-color);
 }
-.page1,
-.page2{
+.page {
     text-align: center;
     line-height: 30px;
     display: inline-block;
@@ -598,10 +595,8 @@ body{
     border: 2px solid #333;
     border-radius: 3px;
 }
-.icon-page1:hover,
-.icon-page2:hover,
-.page1:hover,
-.page2:hover{
+.icon-page:hover,
+.page:hover {
     opacity: 0.7;
 }
 /*Giỏ hàng*/
@@ -826,4 +821,9 @@ body{
 
 .kqtimkiem {
     margin: 0;
+}
+
+.current-page {
+    background-color: #cb1c22;
+    color: white;
 }

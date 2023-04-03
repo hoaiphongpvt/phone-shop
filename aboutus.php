@@ -55,10 +55,7 @@
                     <a href="index.php"><img src="./assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
-                        <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input">
-                        <button class="header_search-button">
-                            <a href="timkiem.php" style="text-decoration: none;"><i class="ti-search header_search-icon"></i></a>
-                        </button>
+                        <?php include "./assets/components/search.php" ?>
                     </div>
                  <div class="header_cart">
                     <a href="#" onclick="login_required()" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
@@ -103,8 +100,9 @@
                 </div>
             </div>    
         </div>
-        <?php require "footer.php"?>
+        <?php require "./assets/components/footer.php"?>
     </div>
+    <script src="./assets/js/timkiem.js"></script>
     <div id="dangki" style="display: none">
         <div class="modal">
             <div class="modal_overlay"></div>

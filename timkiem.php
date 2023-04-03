@@ -1,6 +1,6 @@
 <?php 
     require "connect.php";
-    if (isset($_GET['keyword'])) {
+    if (!empty($_GET['keyword'])) {
         $sql = "SELECT  * FROM sanpham WHERE TEN LIKE '%".$_GET['keyword']."%'";
         $result = $conn->query($sql);
         $num_rows = mysqli_num_rows($result);
@@ -57,10 +57,7 @@
                     <a href="index.php"><img src="./assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
-                        <input type="text" placeholder=<?php echo $_GET['keyword']?> class="header_search-input">
-                        <button class="header_search-button">
-                            <i class="ti-search header_search-icon"></i>
-                        </button>
+                        <?php include "./assets/components/search.php"?>
                     </div>
                  <div class="header_cart">
                     <a href="giohang.html" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
@@ -88,13 +85,13 @@
                                 $item .= "<p  class='phone-name'><a href='chitietsanpham.php?id=".$row['ID']."'>".$row["TEN"]."</a></p>";
                                 $item .= "<h3 class='phone-price'>".currency_format($row["GIA"]) ."</h3>";
                                 $item .= "<div class='phone-vote'><p class='value'>".$row["DANHGIA"]."</p><i class='ti-star'></i></div>";
-                                $item .= "<ul class='phone-parameter'>
-                                    <li>Màn hình 6.7 inch, Chip Apple A15 Bionic</li>
-                                    <li>RAM 6 GB, ROM 128 GB</li>
-                                    <li>Camera sau: 3 camera 12 MP</li>
-                                    <li>Camera trước: 12 MP</li>
-                                    <li>Pin 4352 mAh, Sạc 20 W</li>
-                                    </ul>";
+                                // $item .= "<ul class='phone-parameter'>
+                                //     <li>Màn hình 6.7 inch, Chip Apple A15 Bionic</li>
+                                //     <li>RAM 6 GB, ROM 128 GB</li>
+                                //     <li>Camera sau: 3 camera 12 MP</li>
+                                //     <li>Camera trước: 12 MP</li>
+                                //     <li>Pin 4352 mAh, Sạc 20 W</li>
+                                //     </ul>";
                                 $item .= "</div>";
                                 echo $item;   
                             }
@@ -103,7 +100,8 @@
                 </div>
              </div>
         </div>
-        <?php require "footer.php"?>
+        <?php require "./assets/components/footer.php"?>
+        <script src="./assets/js/timkiem.js"></script>
     </div>
 </body>
 </html>
