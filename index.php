@@ -90,14 +90,18 @@
                         
                         <?php
                             include "./assets/components/formatCurrency.php";
+                            
                             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 4;
                             $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
                             $offset = ($current_page - 1) * $item_per_page;
+
                             $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP ORDER BY 'sanpham.ID' ASC LIMIT ".$item_per_page." OFFSET ".$offset;
                             $result = $conn->query($sql);
                             $totalProducts = mysqli_query($conn, "SELECT * FROM sanpham");
+
                             $numRow = $totalProducts->num_rows;
                             $totalPages = ceil($numRow / $item_per_page);
+
                             while($row = $result->fetch_assoc()) {
                                 $item = "<div class='phone-phone-item'>";
                                 $item .= "<a href='chitietsanpham.php?id=".$row['ID']."'><img src=".$row["HINHANH"]." class='phone-img'></a>";
@@ -120,11 +124,12 @@
                 <?php include "./assets/components/phantrang.php"?>
              </div>
         </div>
-        <?php require "./assets/components/footer.php"?>
     </div>
+    <?php require "./assets/components/footer.php"?>
     <script src="./assets/slider/banner.js"></script>
     <script src="./assets/js/timkiem.js"></script>
     <script src="./assets/js/loc.js"></script>
+    
     <div id="dangki" style="display: none;">
         <div class="modal">
             <div class="modal_overlay"></div>

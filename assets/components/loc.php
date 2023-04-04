@@ -1,4 +1,4 @@
-<form action="./././timkiem.php" method="GET" class="locSP">
+<form action="./././locsanpham.php" method="GET" class="locSP">
     <h3>Bộ lọc:</h3>
     <div class="locTheoHang">
         <select name="nsx" id="nsx" class="form-select form-select-lg">

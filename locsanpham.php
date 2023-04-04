@@ -1,10 +1,56 @@
 <?php 
-    require "connect.php";
-    if (!empty($_GET['keyword'])) {
-        $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE TEN LIKE '%".$_GET['keyword']."%'";
+    include "connect.php";
+    
+    if (isset($_GET['nsx']) && $_GET['gia'] == "null") {
+        $nsx = $_GET['nsx'];
+        $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.ID_NSX = ".$nsx;
+        $result = $conn->query($sql);
+        $num_rows = mysqli_num_rows($result);
+    }
+
+    if (isset($_GET['gia']) && $_GET['nsx'] == "null") {
+        $gia = $_GET['gia'];
+        $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE ";
+        switch ($gia) {
+            case "0-4000000":
+            $sql .= " GIA < 4000000";
+            break;
+            case "4000000-10000000":
+            $sql .= " GIA >= 4000000 AND GIA < 10000000";
+            break;
+            case "10000000-20000000":
+            $sql .= " GIA >= 10000000 AND GIA < 20000000";
+            break;
+            case ">20000000":
+            $sql .= " GIA >= 20000000";
+            break;
+        }
+
         $result = $conn->query($sql);
         $num_rows = mysqli_num_rows($result);
     } 
+
+    if (isset($_GET['nsx']) && isset($_GET['gia']) && $_GET['nsx'] != "null" && $_GET['gia'] != "null") {
+        $nsx = $_GET['nsx'];
+        $gia = $_GET['gia'];
+        $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.ID_NSX = ".$nsx." AND";
+        switch ($gia) {
+            case "0-4000000":
+            $sql .= " GIA < 4000000";
+            break;
+            case "4000000-10000000":
+            $sql .= " GIA >= 4000000 AND GIA < 10000000";
+            break;
+            case "10000000-20000000":
+            $sql .= " GIA >= 10000000 AND GIA < 20000000";
+            break;
+            case ">20000000":
+            $sql .= " GIA >= 20000000";
+            break;
+        }
+        $result = $conn->query($sql);
+        $num_rows = mysqli_num_rows($result);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +116,7 @@
                <div class="content">
                 <div id="apple">
                     <div class="phone-heading kqtimkiem">
-                        <h3 class="phone-heading-text kqTimKiem">Tìm thấy <p style="display: inline-block; color: #f30c28;"><?php echo $num_rows?></p> kết quả cho từ khóa "<?php echo $_GET['keyword']?>"</h3>
+                        <h3 class="phone-heading-text kqTimKiem">Tìm thấy <p style="display: inline-block; color: #f30c28;"><?php echo $num_rows?></p> kết quả</h3>
                     </div>
                     <div class="phone-content">
                         <?php
@@ -93,10 +139,11 @@
                             }
                         ?>
                     </div>
+                    <!-- <?php include "./assets/components/phantrang.php"?> -->
                 </div>
              </div>
         </div>
-        <?php require "./assets/components/footer.php"?>
+        <?php include "./assets/components/footer.php"?>
         <script src="./assets/js/timkiem.js"></script>
     </div>
 </body>
