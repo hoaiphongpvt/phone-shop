@@ -1,5 +1,6 @@
 <?php 
     require "connect.php";
+    include "./assets/components/formatCurrency.php";
     if (isset($_GET['id'])) {
         $productId = $_GET['id'];
         $sql = "SELECT sanpham.*, chitietsanpham.* FROM sanpham JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.id=".$productId;
@@ -8,13 +9,7 @@
     } else {
         echo "Error";
     }
-    
 
-    function currency_format($number, $suffix = 'đ') {
-        if (!empty($number)) {
-            return number_format($number, 0, ',', '.') . "{$suffix}";
-        }
-    }
 ?>
 
 
@@ -92,9 +87,9 @@
         </header> -->
         <div class="container-product">
             <div class="grid">
-                <div id="banner">
+                <!-- <div id="banner">
                     <img src="./assets/apple/img/banner-product.png" id="banner-img">
-                </div>
+                </div> -->
                 <div class="name-product">
                     <p><?php echo $row['TEN']?></p>
                 </div>
@@ -138,9 +133,9 @@
                     <div class="review">
 
                 </div>
-                <div class="desc">
+                <div class="review">
                     <h3 class="desc_title">Đánh giá chi tiết <?php echo $row["TEN"]?></h3>
-                    <p class="desc_detail">Đây là mô tả chi tiết</p>
+                    <p class="desc_detail"><?php echo $row["MOTA"]?></p>
                 </div>
             </div>
         </div>

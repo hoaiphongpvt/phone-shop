@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="assets/css_js/main.css">
     <link rel="stylesheet" href="assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/css_js/style.js"></script>
 </head>
 <body>
@@ -75,13 +77,11 @@
         <div class="container">
            <div class="grid">
                <div class="content">
-                <div id="banner">
-                        <img src="assets/img/logo-banner/The PS logo (1).png" id="banner-img">
-                    <div>
-                        <img src="assets/img/logo-banner/banner2.jpg" id="banner-img" height="100%">
-                    </div>
+                    <div id="banner">
+                        <img src="./assets/img/logo-banner/s23-banner.png" id="banner-img">
                    </div>
                 </div>
+                <?php include "./assets/components/loc.php"?>
                 <div id="apple">
                     <div class="phone-heading">
                         <h3 class="phone-heading-text">Tất cả sản phẩm</h3>
@@ -89,15 +89,11 @@
                     <div class="phone-content">
                         
                         <?php
-                            function currency_format($number, $suffix = 'đ') {
-                                if (!empty($number)) {
-                                    return number_format($number, 0, ',', '.') . "{$suffix}";
-                                }
-                            }
+                            include "./assets/components/formatCurrency.php";
                             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 4;
                             $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
                             $offset = ($current_page - 1) * $item_per_page;
-                            $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID_CHITIET = chitietsanpham.ID ORDER BY 'sanpham.ID' ASC LIMIT ".$item_per_page." OFFSET ".$offset;
+                            $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP ORDER BY 'sanpham.ID' ASC LIMIT ".$item_per_page." OFFSET ".$offset;
                             $result = $conn->query($sql);
                             $totalProducts = mysqli_query($conn, "SELECT * FROM sanpham");
                             $numRow = $totalProducts->num_rows;
@@ -128,6 +124,7 @@
     </div>
     <script src="./assets/slider/banner.js"></script>
     <script src="./assets/js/timkiem.js"></script>
+    <script src="./assets/js/loc.js"></script>
     <div id="dangki" style="display: none;">
         <div class="modal">
             <div class="modal_overlay"></div>

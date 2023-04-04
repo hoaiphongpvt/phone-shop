@@ -60,8 +60,8 @@ html {
     border-radius: 5px;
     animation: fadeIn linear .1s;
 }
-.btn{
-    min-width: 140px;
+.btn {
+    min-width: 100px;
     height: 36px;
     border: none;
     text-decoration: none;

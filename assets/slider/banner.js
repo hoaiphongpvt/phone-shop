@@ -1,4 +1,4 @@
-const bannerImg = ["./assets/apple/img/banner-product.png" ,"./assets/img/logo-banner/banner.png", "./assets/img/logo-banner/The PS logo (1).png"]
+const bannerImg = ["./assets/img/logo-banner/ip11-banner.png","./assets/apple/img/banner-product.png" ,"./assets/img/logo-banner/banner.png", "./assets/img/logo-banner/The PS logo (1).png","./assets/img/logo-banner/s23-banner.png"]
 const bannerEle = document.getElementById("banner-img")
 const slider = document.getElementById("banner")
 let index = 0
@@ -12,7 +12,7 @@ const idInterval = setInterval(() => {
           index = 0;
       }
     }, 500)
-}, 3000)
+}, 4000)
 
 
 

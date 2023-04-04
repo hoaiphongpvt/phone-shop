@@ -1,7 +1,31 @@
 <?php 
     require "connect.php";
     if (!empty($_GET['keyword'])) {
-        $sql = "SELECT  * FROM sanpham WHERE TEN LIKE '%".$_GET['keyword']."%'";
+        $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE TEN LIKE '%".$_GET['keyword']."%'";
+        $result = $conn->query($sql);
+        $num_rows = mysqli_num_rows($result);
+    } elseif ($_GET['nsx'] && $_GET['gia'] == "null") {
+        $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE ID_NSX = ".$_GET['nsx'];
+        $result = $conn->query($sql);
+        $num_rows = mysqli_num_rows($result);
+    } elseif ($_GET['nsx']== "null" && $_GET['gia']) {
+        $gia = $_GET["gia"];
+        $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE ";
+        switch ($gia) {
+            case "0-4000000":
+            $sql .= " GIA < 4000000";
+            break;
+            case "4000000-10000000":
+            $sql .= " GIA >= 4000000 AND GIA < 10000000";
+            break;
+            case "10000000-20000000":
+            $sql .= " GIA >= 10000000 AND GIA < 20000000";
+            break;
+            case ">20000000":
+            $sql .= " GIA >= 20000000";
+            break;
+        }
+
         $result = $conn->query($sql);
         $num_rows = mysqli_num_rows($result);
     }
@@ -14,7 +38,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cửa hàng điện thoại di động The PS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../assets/img/logo-banner/logotheps.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/logo-banner/logotheps.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map">
     <link rel="stylesheet" href="./assets/css_js/base.css">
     <link rel="stylesheet" href="./assets/css_js/main.css">
@@ -74,24 +98,20 @@
                     </div>
                     <div class="phone-content">
                         <?php
-                            function currency_format($number, $suffix = 'đ') {
-                                if (!empty($number)) {
-                                    return number_format($number, 0, ',', '.') . "{$suffix}";
-                                }
-                            }
+                            include "./assets/components/formatCurrency.php";
                             while($row = $result->fetch_assoc()) {
                                 $item = "<div class='phone-phone-item'>";
                                 $item .= "<a href='chitietsanpham.php?id=".$row['ID']."'><img src=".$row["HINHANH"]." class='phone-img'></a>";
                                 $item .= "<p  class='phone-name'><a href='chitietsanpham.php?id=".$row['ID']."'>".$row["TEN"]."</a></p>";
                                 $item .= "<h3 class='phone-price'>".currency_format($row["GIA"]) ."</h3>";
                                 $item .= "<div class='phone-vote'><p class='value'>".$row["DANHGIA"]."</p><i class='ti-star'></i></div>";
-                                // $item .= "<ul class='phone-parameter'>
-                                //     <li>Màn hình 6.7 inch, Chip Apple A15 Bionic</li>
-                                //     <li>RAM 6 GB, ROM 128 GB</li>
-                                //     <li>Camera sau: 3 camera 12 MP</li>
-                                //     <li>Camera trước: 12 MP</li>
-                                //     <li>Pin 4352 mAh, Sạc 20 W</li>
-                                //     </ul>";
+                                $item .= "<ul class='phone-parameter'>
+                                        <li>Màn hình:" .$row["TS_MANHINH"]."</li>
+                                        <li>Chip:" .$row["CHIP"]."</li>
+                                        <li>Bộ nhớ: ".$row["TS_BONHO"]."</li>
+                                        <li>Sim:" .$row["SIM"]."</li>
+                                        <li>Pin: ".$row["TS_PIN"]."</li>
+                                        </ul>";
                                 $item .= "</div>";
                                 echo $item;   
                             }
