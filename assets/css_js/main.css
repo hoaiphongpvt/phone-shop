@@ -19,8 +19,12 @@ body{
 .header_navbar {
     display: flex;
     justify-content: space-between;
+    padding-top: 5px;
+    font-family: initial;
 }
 .header__navbar--list {
+    display: flex;
+    align-items: center;
     list-style: none;
     padding-left: 0;
 }
@@ -233,7 +237,7 @@ body{
 }
 .head-footer{
     background-color: #cd1818;
-    padding: 10px 0;
+    padding: 10px 5px 5px 5px;
     min-height: 70px;
 }
 .head-footer-policy{
@@ -302,6 +306,7 @@ body{
     color: var(--text-color);
     padding: 5px 0px;
     border-bottom: 2px solid var(--boder-color);
+    font-family:Arial, Helvetica, sans-serif;
 }
 .phone-content{
     margin-top: 24px;
@@ -346,6 +351,7 @@ body{
     font-size: 1.6rem;
 }
 .phone-vote {
+    padding: 10px 0;
     height: 10px;
     display: flex;
     align-items: center;

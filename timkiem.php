@@ -48,8 +48,9 @@
                                 Giới thiệu
                             </a>
                         </li>
-                        <a href="thongtinkhachhang.html" class="list-item list-item-bold list-item-separate">Xin chào theps</a>
-                        <a href="../index.html" class="list-item list-item-bold">Đăng xuất</a>
+                        <?php 
+                           include "./assets/components/dangnhapvadangxuat.php";
+                        ?> 
                     </ul>
                 </nav>
                <div class="header_with-search">

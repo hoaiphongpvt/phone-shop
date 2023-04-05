@@ -1,5 +1,5 @@
 <form action="./././locsanpham.php" method="GET" class="locSP">
-    <h3>Bộ lọc:</h3>
+    <h3>Lọc theo:</h3>
     <div class="locTheoHang">
         <select name="nsx" id="nsx" class="form-select form-select-lg">
             <option value=null selected>Chọn hãng sản xuất</option>

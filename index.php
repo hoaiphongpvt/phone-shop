@@ -44,8 +44,9 @@
                                 Giới thiệu
                             </a>
                         </li>
-                        <a href="dangki.php" class="list-item list-item-bold list-item-separate" onclick="showDangKi()">Đăng kí</a>
-                        <a class="list-item list-item-bold" onclick="showDangNhap()">Đăng nhập</a>
+                        <?php 
+                           include "./assets/components/dangnhapvadangxuat.php";
+                        ?> 
                     </ul>
                 </nav>
                <div class="header_with-search">
@@ -129,36 +130,6 @@
     <script src="./assets/slider/banner.js"></script>
     <script src="./assets/js/timkiem.js"></script>
     <script src="./assets/js/loc.js"></script>
-     <!-- Dang nhap -->
-    <div id="dangnhap" style="display: none;">
-        <div class="modal">
-            <div class="modal_overlay"></div>
-                <div class="modal_body">   
-                    <div class="auth-form">
-                        <div class="auth-form__container">
-                            <div class="auth-form__header">
-                                    <h3 class="auth-form__heading">Đăng nhập</h3>
-                            </div>
-                            <div class="auth-form__form">
-                                <div class="auth-form__group">
-                                    <input type="text" class="auth-form__input" placeholder="Tên đăng nhập">
-                                </div>
-                            <div class="auth-form__group">
-                                    <input type="password" class="auth-form__input" placeholder="Mật khẩu">
-                            </div>
-                        </div>
-                        <div class="auth-form__note">
-                            <p class="auth-form__policy-text2">Quên mật khẩu?</p>
-                        </div>
-                        <div class="auth-form__controls">
-                            <button class="btn btn--back" onclick="hide()">TRỞ LẠI</button>
-                            <button class="btn btn--primary" ><a href="demo/dangnhap.html" style="color: white; text-decoration: none;">ĐĂNG NHẬP</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--Yeu cau dang nhap-->
     <div id="login_required" style="display: none;">
         <div class="modal">

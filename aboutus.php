@@ -1,3 +1,7 @@
+<?php 
+    include "connect.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,14 +44,10 @@
                                 Giới thiệu
                             </a>
                         </li>
-                        <li class="list-item">
-                            <a href="" class="list-item-iconlink">
-                                <i class="ti-help-alt list-item-icon"></i>
-                                Trợ giúp
-                            </a>
-                        </li>
-                        <a class="list-item list-item-bold list-item-separate" onclick="showDangKi()">Đăng kí</a>
-                        <a class="list-item list-item-bold" onclick="showDangNhap()">Đăng nhập</a>
+                        <?php 
+
+                            include "./assets/components/dangnhapvadangxuat.php";
+                        ?> 
                     </ul>
                 </nav>
                <div class="header_with-search">
