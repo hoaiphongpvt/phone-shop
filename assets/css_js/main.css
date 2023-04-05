@@ -93,7 +93,13 @@ body{
 }
 .auth-form__note{
     display: flex;
+    flex-direction: column;
+}
+
+.cbDieuKhoan {
+    display: flex;
     align-items: center;
+    height: 30px;
 }
 .auth-form__policy-check{
   margin-right: 5px;
@@ -118,6 +124,14 @@ body{
 .btn.btn--primary{
     background-color: #cd1818;
     color: #fff;
+}
+
+.auth-form__controls a {
+    line-height: 36px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 12px;
 }
 .header_with-search{
     height: 81px;
@@ -855,4 +869,9 @@ body{
 
 .ab_text {
     line-height: 1.7;
+}
+
+.has-err {
+    margin: 5px 0 0 3px;
+    color: red;
 }

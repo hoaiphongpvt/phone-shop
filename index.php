@@ -44,7 +44,7 @@
                                 Giới thiệu
                             </a>
                         </li>
-                        <a class="list-item list-item-bold list-item-separate" onclick="showDangKi()">Đăng kí</a>
+                        <a href="dangki.php" class="list-item list-item-bold list-item-separate" onclick="showDangKi()">Đăng kí</a>
                         <a class="list-item list-item-bold" onclick="showDangNhap()">Đăng nhập</a>
                     </ul>
                 </nav>
@@ -129,40 +129,6 @@
     <script src="./assets/slider/banner.js"></script>
     <script src="./assets/js/timkiem.js"></script>
     <script src="./assets/js/loc.js"></script>
-    
-    <div id="dangki" style="display: none;">
-        <div class="modal">
-            <div class="modal_overlay"></div>
-            <div class="modal_body">    
-            <div class="auth-form">
-                    <div class="auth-form__container">
-                        <div class="auth-form__header">
-                            <h3 class="auth-form__heading">Đăng kí</h3>
-                        </div>
-                        <div class="auth-form__form">
-                            <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Tên đăng nhập">
-                            </div>
-                            <div class="auth-form__group">
-                                <input type="password" class="auth-form__input" placeholder="Mật khẩu">
-                            </div>
-                            <div class="auth-form__group">
-                                <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
-                            </div>
-                        </div>
-                        <div class="auth-form__note">
-                            <input type="checkbox" class="auth-form__policy-check">
-                            <p class="auth-form__policy-text">Tôi đồng ý với các điều khoản và dịch vụ.</p>
-                        </div>
-                        <div class="auth-form__controls">
-                            <button class="btn btn--back" onclick="hide()">TRỞ LẠI</button>
-                            <button class="btn btn--primary" onclick="DangKiThanhCong()">ĐĂNG KÍ</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
      <!-- Dang nhap -->
     <div id="dangnhap" style="display: none;">
         <div class="modal">
