@@ -7,6 +7,8 @@
         $email = $_POST['email'];
         $sdt = $_POST['sdt'];
         $diachi = $_POST['diachi'];
+        $ngaysinh=$_POST['ngaysinh'];
+        $hinhanh = "";
         $tendangnhap = $_POST['tendangnhap'];
         $matkhau = $_POST['matkhau'];
 
@@ -16,7 +18,7 @@
             $err['msg'] = "Tài khoản đã tồn tại!";
         } else {
             $err['msg'] = "Đăng kí thành công";
-            $sql = "INSERT INTO nguoidung (HOTEN, EMAIL, DIENTHOAI, DIACHI, TENDANGNHAP, MATKHAU) VALUES ('$hoten', '$email', '$sdt', '$diachi', '$tendangnhap', '$matkhau')";
+            $sql = "INSERT INTO nguoidung (HOTEN, EMAIL, DIENTHOAI, DIACHI, NGAYSINH, HINHANH, TENDANGNHAP, MATKHAU) VALUES ('$hoten', '$email', '$sdt',  '$diachi', '$ngaysinh', '$hinhanh', '$tendangnhap', '$matkhau')";
             $result = mysqli_query($conn, $sql);
         }
     }
@@ -40,7 +42,7 @@
             <div class="auth-form">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="auth-form__container">
                         <div class="auth-form__header">
-                            <h3 class="auth-form__heading">Đăng kí</h3>
+                            <h3 class="auth-form__heading">ĐĂNG KÍ</h3>
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
@@ -58,6 +60,10 @@
                             <div class="auth-form__group">
                                 <input type="text" id="diachi" class="auth-form__input" name="diachi" placeholder="Địa chỉ">
                                 <p class="has-err" id="err-diachi"></p>
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="date" id="diachi" class="auth-form__input" name="ngaysinh" placeholder="Ngày sinh">
+                                <p class="has-err" id="err-ngaysinh"></p>
                             </div>
                             <div class="auth-form__group">
                                 <input type="text" id="tendangnhap" class="auth-form__input" name="tendangnhap" placeholder="Tên đăng nhập">
@@ -85,8 +91,8 @@
                             <p class="has-err"><?php echo (isset($err['msg']) ? $err['msg'] : "")?></p>
                         </div>
                         <div class="auth-form__controls">
-                            <a href="index.php" class="btn btn--back">TRỞ LẠI</a>
-                            <button type="submit" class="btn btn--primary" id="btn-dangki">ĐĂNG KÍ</button>
+                            <a href="index.php" class="btn btn--back">Trở lại</a>
+                            <button type="submit" class="btn btn--primary" id="btn-dangki">Đăng kí</button>
                         </div>
                     </form>
                 </div>

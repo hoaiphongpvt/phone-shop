@@ -40,7 +40,7 @@
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="auth-form">
                         <div class="auth-form__container">
                             <div class="auth-form__header">
-                                    <h3 class="auth-form__heading">Đăng nhập</h3>
+                                    <h3 class="auth-form__heading">ĐĂNG NHẬP</h3>
                             </div>
                             <div class="auth-form__form">
                                 <div class="auth-form__group">
@@ -59,8 +59,8 @@
                             <p id="msg" class="has-err"><?php echo (isset($err['msg']) ? $err['msg'] : "")?></p>
                         </div>
                         <div class="auth-form__controls">
-                            <a href="index.php" class="btn btn--back" onclick="hide()">TRỞ LẠI</a>
-                            <button id="btn-dangnhap" type="submit" class="btn btn--primary">ĐĂNG NHẬP</a></button>
+                            <a href="index.php" class="btn btn--back" onclick="hide()">Trở lại</a>
+                            <button id="btn-dangnhap" type="submit" class="btn btn--primary">Đăng nhập</a></button>
                         </div> 
                     </div>
                 </div>

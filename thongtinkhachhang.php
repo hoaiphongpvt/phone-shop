@@ -1,3 +1,6 @@
+<?php 
+    include "connect.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Thông tin khách hàng</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../assets/img/logo-banner/logotheps.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/logo-banner/logotheps.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map">
-    <link rel="stylesheet" href="../assets/css_js/base.css">
-    <link rel="stylesheet" href="../assets/css_js/main.css">
-    <link rel="stylesheet" href="../assets/fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="./assets/css_js/base.css">
+    <link rel="stylesheet" href="./assets/css_js/main.css">
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="../assets/css_js/style.js"></script>
+    <script src="./assets/css_js/style.js"></script>
 </head>
 <body>
     <div class="app">
@@ -20,7 +23,7 @@
                 <nav class="header_navbar">
                     <ul class="header__navbar--list">
                         <li class="list-item list-item-separate">
-                            <a href="dangnhap.html" class="list-item-iconlink">Trang chủ</a>
+                            <a href="index.php" class="list-item-iconlink">Trang chủ</a>
                         </li>
                         <li class="list-item">
                             <span class="list-item-title">Liên hệ</span>
@@ -34,30 +37,22 @@
                     </ul>
                     <ul class="header__navbar--list">
                         <li class="list-item">
-                            <a href="" class="list-item-iconlink">
-                                <i class="ti-bell list-item-icon"></i>
-                                Thông báo
+                            <a href="aboutus.php" class="list-item-iconlink">
+                                <i class="ti-info list-item-icon"></i>
+                                Giới thiệu
                             </a>
                         </li>
-                        <li class="list-item">
-                            <a href="" class="list-item-iconlink">
-                                <i class="ti-help-alt list-item-icon"></i>
-                                Trợ giúp
-                            </a>
-                        </li>
-                        <a class="list-item list-item-bold list-item-separate">Xin chào theps</a>
-                        <a href="../index.html" class="list-item list-item-bold">Đăng xuất</a>
+                        <?php 
+                            include "./assets/components/dangnhapvadangxuat.php"
+                        ?>
                     </ul>
                 </nav>
                <div class="header_with-search">
                    <div class="header__logo">
-                    <img src="../assets/img/logo-banner/logotheps.png" class="header__logo-img">
+                        <a href="index.php"><img src="assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
-                        <input type="text" placeholder="Tìm kiếm điện thoại..." class="header_search-input">
-                        <button class="header_search-button">
-                            <i class="ti-search header_search-icon"></i>
-                        </button>
+                        <?php include "./assets/components/search.php"?>
                     </div>
                  <div class="header_cart">
                     <a href="giohang.html" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
@@ -72,17 +67,24 @@
                         <div class="customer-title">
                             Thông tin khách hàng
                         </div>
+                        <?php 
+                            $ID = $user['ID'];
+                            $sql = "SELECT * FROM nguoidung WHERE ID =".$ID;
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                        ?>
                         <div class="customer-img">
-                            <img src="../assets/img/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg" width="200px" height="200px" class="customer_img">
+                            <img src=<?php echo ($row['HINHANH'] ?  $row['HINHANH'] : "./assets/img/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg"  )?> width="200px" height="200px" class="customer_img">
                         </div>
                         <div class="customer-info">
-                            <div class="customer-name">Bé Mèo Cute</div>
-                            <div class="customer-DateOfBirth">Ngày sinh: 21/11/2112</div>
-                            <div class="customer-phone">Số điện thoại: 0855559851</div>
-                            <div class="customer-address">Địa chỉ: 273 An Dương Vương, Phường 3, Quận 5, Thành phố Hồ Chí Minh.</div>
+                            <div class="customer-name"><?php echo $row['HOTEN']?></div>
+                            <div class="customer-DateOfBirth">Ngày sinh: <?php echo date('d/m/Y', strtotime($row['NGAYSINH']))?></div>
+                            <div class="customer-phone">Số điện thoại: <?php echo $row['DIENTHOAI']?></div>
+                            <div class="customer-email">Email: <?php echo $row['EMAIL']?></div>
+                            <div class="customer-address">Địa chỉ: <?php echo $row['DIACHI']?></div>
                         </div>
                         <div class="customer-update">
-                            <button onclick="update_info()">Cập nhật</button>
+                            <button onclick="update_info()">Cập nhật thông tin</button>
                         </div>
                    </div>
                    <div class="customer-order">
@@ -104,62 +106,7 @@
                         </div>
                     </div>
                 </div>
-        <footer class="FOOTER">
-            <div class="head-footer">
-                <div class="grid">
-                    <ul class="head-footer-policy">
-                        <li>
-                            <img src="../assets/img/logo-banner/vanchuyen.png" class="policy-img">
-                            <span class="policy-text">Vận chuyển toàn quốc</span>
-                        </li>
-                        <li>
-                            <img src="../assets/img/logo-banner/1doi1.png"  class="policy-img">
-                            <span class="policy-text">1 đổi 1 trong 30 ngày</span>
-                        </li>
-                        <li>
-                            <img src="../assets/img/logo-banner/baogia.png"  class="policy-img">
-                            <span class="policy-text">Giá chuẩn, không sốc giá</span>
-                        </li>
-                        <li>
-                            <img src="../assets/img/logo-banner/baohiem.png"  class="policy-img">
-                            <span class="policy-text">Bảo hành máy 12 tháng</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="foot-footer">
-                <div class="grid ">
-                    <div  class="footer">
-                        <div class="col1">
-                            <p>Lịch sử mua hàng</p>
-                            <p>Cộng tác bán hàng cùng ThePS</p>
-                            <p>Tìm hiểu về mua trả góp</p>
-                            <p>Chính sách bảo hành</p>
-                            <p>Xem thêm</p>
-                        </div>
-                        <div class="co  l2">
-                            <p>Giới thiệu về công ty</p>
-                            <p>Tuyển dụng</p>
-                            <p>Gửi ý kiến, khiếu nại</p>
-                            <p>Tìm siêu thị</p>
-                            <p>Xem bản mobile</p>
-                        </div>
-                        <div class="col3">
-                            <p>Tổng đài hỗ trợ (Miễn phí gọi)</p>
-                            <p>Gọi mua: 1800.1060 (7:30 - 22:00)</p>
-                            <p>Kỹ thuật: 1800.1763 (7:30 - 22:00)</p>
-                            <p>Khiếu nại: 1800.1062 (8:00 - 21:30)</p>
-                            <p>Bảo hành: 1800.1064 (8:00 - 21:00)</p>
-                        </div>
-                        <div class="col4">
-                            <p><i class="ti-facebook"> 3270.8k Người theo dõi</i></p>
-                            <p><i class="ti-youtube"> 829k Người đăng kí</i></p>
-                            <p><img src="../assets/img/logo-banner/logotheps.png" width="110px"></p>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </footer>
+            <?php include "./assets/components/footer.php"?>
         <div id="edit-info" style="display: none;">
             <div class="modal">
                 <div class="modal_overlay"></div>
