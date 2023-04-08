@@ -55,7 +55,7 @@
                         <?php include "./assets/components/search.php"?>
                     </div>
                  <div class="header_cart">
-                    <a href="giohang.html" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
+                    <a href="giohang.php" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>
@@ -112,37 +112,49 @@
                 <div class="modal_overlay"></div>
                     <div class="modal_body">    
                         <div class="auth-form">
-                            <div class="auth-form__container">
+                            <form action="chinhsuathongtinnguoidung.php" method="GET" class="auth-form__container">
                                <h1 style="text-align: center;">Cập nhật thông tin</h1>
                                <div class="edit-info--group">
                                 <label for="">Ảnh đại điện:</label>
-                                <input type="text" placeholder="Dán link ảnh vào đây" class="edit-info-input">
+                                <input type="text" id="hinhanh" name="hinhanh" placeholder="Dán link ảnh vào đây" class="edit-info-input">
+                                <p class="has-err" id="msg-hinhanh"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Họ và tên:</label>
-                                <input type="text" class="edit-info-input" placeholder="Nhập họ và tên">
+                                <input type="text" id="hoten" name="hoten" class="edit-info-input" placeholder="Nhập họ và tên">
+                                <p class="has-err" id="msg-hoten"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Ngày sinh:</label>
-                                <input type="text" class="edit-info-input" placeholder="Nhập ngày, tháng, năm sinh">
+                                <input type="date" id="ngaysinh" name="ngaysinh" class="edit-info-input" placeholder="Nhập ngày, tháng, năm sinh">
+                                <p class="has-err" id="msg-ngaysinh"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Số điện thoại:</label>
-                                <input type="text" class="edit-info-input" placeholder="Nhập số điện thoại">
+                                <input type="text" id="sdt" name="sdt" class="edit-info-input" placeholder="Nhập số điện thoại">
+                                <p class="has-err" id="msg-sdt"></p>
+                              </div>
+                              <div class="edit-info--group">
+                                <label for="">Email:</label>
+                                <input type="email" id="email" name="email" class="edit-info-input" placeholder="Nhập email">
+                                <p class="has-err" id="msg-email"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Địa chỉ:</label>
-                                <input type="text" class="edit-info-input" placeholder="Nhập địa chỉ">
+                                <input type="text" id="diachi" name="diachi" class="edit-info-input" placeholder="Nhập địa chỉ">
+                                <p class="has-err" id="msg-diachi"></p>
                               </div>
                                <div class="edit-button">
-                                <button class="edit-info-button" onclick="hide_update_info()">Xong</button>
+                                <p class="back-update-info"  onclick={closeUpdateInfo()}><i class="ti-back-left"></i></p>
+                                <button type="submit" id="btn-suatt" class="edit-info-button">Xong</button>
                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./assets/js/chechthongtinkhachhang.js"></script>
 </body>
 </html>

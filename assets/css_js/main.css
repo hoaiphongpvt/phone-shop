@@ -639,7 +639,6 @@ body{
     flex-grow: 1;
 } */
 .cart-container{
-    margin-top: 20px;
     border: 1px solid var(--boder-color);
 }
 .cart-products{
@@ -828,7 +827,10 @@ body{
     padding-left: 8px;
 }
 .edit-button {
-    text-align: end;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
 }
 .edit-info-button {
     height: 40px;
@@ -883,6 +885,7 @@ body{
 }
 
 .has-err {
+    font-size: 12px;
     margin: 5px 0 0 3px;
     color: red;
 }
@@ -914,4 +917,11 @@ body{
 
 .btn-delete {
     min-width: 50px;
+}
+
+.back-update-info {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
 }

@@ -5,8 +5,9 @@
             <option value=null selected>Chọn hãng sản xuất</option>
             <option value="1">Apple</option>
             <option value="2">Samsung</option>
-            <option value="3">Oppo</option>
-            <option value="4">Vivo</option>
+            <option value="3">Xiaomi</option>
+            <option value="4">Oppo</option>
+            <option value="5">Vivo</option>
         </select>
     </div>
 
