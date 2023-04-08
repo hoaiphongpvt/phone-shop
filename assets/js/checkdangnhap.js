@@ -24,8 +24,10 @@ btnDangnhap.addEventListener('click', (e) => {
 
 tendangnhap.addEventListener('input', () => {
     msgTendangnhap.innerText = ""
+    msg.innerText = ""
 })
 
 matkhau.addEventListener('input', () => {
     msgMatkhau.innerText = ""
+    msg.innerText = ""
 })

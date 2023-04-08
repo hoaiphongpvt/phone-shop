@@ -1,6 +1,7 @@
 <?php 
     require "connect.php";
     include "./assets/components/formatCurrency.php";
+
     if (isset($_GET['id'])) {
         $productId = $_GET['id'];
         $sql = "SELECT sanpham.*, chitietsanpham.* FROM sanpham JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.id=".$productId;
@@ -11,8 +12,6 @@
     }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +67,7 @@
                        <?php include "./assets/components/search.php"?>
                     </div>
                  <div class="header_cart">
-                    <a href="#" onclick="login_required()" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
+                    <a href="giohang.php" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>
@@ -106,7 +105,9 @@
                             </div>
                             </div>
                             <div class="add-to-cart">
-                                <button class="btn-add-to-cart" onclick="login_required()">THÊM VÀO GIỎ HÀNG</button>
+                                <form method="POST" action="giohang.php?idsanpham=<?php echo $row['ID']?>" >
+                                    <button type="submit" name="themgiohang" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                                </form>
                             </div>
                             <div class="buy-now">
                                 <button class="btn-buy-now" onclick="order()">MUA NGAY</button>

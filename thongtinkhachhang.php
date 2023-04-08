@@ -74,7 +74,7 @@
                             $row = $result->fetch_assoc();
                         ?>
                         <div class="customer-img">
-                            <img src=<?php echo ($row['HINHANH'] ?  $row['HINHANH'] : "./assets/img/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg"  )?> width="200px" height="200px" class="customer_img">
+                            <img src=<?php echo ($row['HINHANH'] ?  $row['HINHANH'] : "./assets/img/avatar-mac-dinh-1.png"  )?> width="200px" height="200px" class="customer_img">
                         </div>
                         <div class="customer-info">
                             <div class="customer-name"><?php echo $row['HOTEN']?></div>

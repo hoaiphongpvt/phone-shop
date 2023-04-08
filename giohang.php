@@ -1,9 +1,28 @@
 <?php 
     include "connect.php";
     include "./assets/components/formatCurrency.php";
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $sql = "SELECT * FROM giohang JOIN nguoidung ON giohang.ID_NGUOIDUNG = nguoidung.ID JOIN sanpham ON giohang.ID_SP = sanpham.ID";
-    $result = $conn->query($sql);
+        $user = $_SESSION['user'];
+        $idSP = $_GET['idsanpham'];
+        $idND = $user['ID'];
+
+        $sql = "SELECT * FROM giohang WHERE ID_SP = $idSP AND ID_NGUOIDUNG = $idND";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $soLuongHienTai = $row['SOLUONG'];
+            $soLuongMoi = $soLuongHienTai + 1;
+            $sql = "UPDATE giohang SET SOLUONG = $soLuongMoi WHERE ID_SP = $idSP AND ID_NGUOIDUNG = $idND";
+            $conn->query($sql);
+        } else {
+            $soluong = 1;
+            $sql = "INSERT INTO giohang(ID_SP, ID_NGUOIDUNG, SOLUONG) VALUES ('$idSP', '$idND', $soluong)";
+            $result = $conn->query($sql);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +89,7 @@
                <div class="content">
                 <div id="cart">
                     <div class="phone-heading">
-                        <h3 class="phone-heading-text">Giỏ Hàng</h3>
+                        <h3 class="phone-heading-text">Giỏ hàng</h3>
                     </div>
                     <div class="cart-content">
                         <div class="cart-heading">
@@ -83,33 +102,54 @@
                   <div class="cart-container">
 
                     <?php 
-                        while($row = $result->fetch_assoc()) {
-                            $s = ' <div id="product1" class="cart-products" style="display: block;">
-                            <div class="cart-body">
-                                <div class="cart-body-item">
-                                    <img src='.$row['HINHANH'].' width="100px" height="100px" alt="">
-                                    <p>'.$row['TEN'].'</p>
-                                </div>
-                                <div class="cart-body-info">
-                                    <div><p>'.currency_format($row['GIA']).'</p></div>
-                                    <div class="quantity">
-                                        <button>-</button>
-                                        <div>'.$row['SOLUONG'].'</div>
-                                        <button>+</button>
-                                    </div>
-                                    <div> <button class="btn-delete" onclick="delete_product_warning()">Xóa</button></div>
-                                </div>
-                            </div>
-                            </div>';
+                    
+                        $sql = "SELECT * FROM giohang JOIN sanpham ON giohang.ID_SP = sanpham.ID WHERE giohang.ID_NGUOIDUNG=".$user['ID'];
+                        $result = $conn->query($sql);
+                        $num_row =  mysqli_num_rows($result);
 
-                            echo $s;
-                            $s = '';
+                        if ($num_row > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                $s = ' <div id="product1" class="cart-products" style="display: block;">
+                                <div class="cart-body">
+                                    <div class="cart-body-item">
+                                        <img src='.$row['HINHANH'].' width="100px" height="100px" alt="">
+                                        <p>'.$row['TEN'].'</p>
+                                    </div>
+                                    <div class="cart-body-info">
+                                        <div><p>'.currency_format($row['GIA']).'</p></div>
+                                        <div class="quantity">
+                                            <button>-</button>
+                                            <div>'.$row['SOLUONG'].'</div>
+                                            <button>+</button>
+                                        </div>
+                                        <div>
+                                            <a href="xoasanphamgiohang.php?idSP='.$row['ID'].'&idND='.$user['ID'].'"><button class="btn btn-delete">Xóa</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>';
+    
+                                echo $s;
+                                $s = '';
+                            }
                         }
                     ?>
                    
                     <div class="total">
+                        <?php 
+                            $sql = "SELECT sanpham.GIA * giohang.SOLUONG AS tong_gia_tri
+                            FROM giohang 
+                            JOIN sanpham ON giohang.ID_SP = sanpham.ID
+                            WHERE giohang.ID_NGUOIDUNG = ".$user['ID'];
+                            $result = mysqli_query($conn, $sql);
+
+                            $total_price = 0;
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $total_price += $row['tong_gia_tri'];
+                            }
+                        ?>
                         <div>
-                            <p>Tổng tiền: <span class="total-cart">32.990.000đ</span></p>
+                            <p>Tổng tiền: <span class="total-cart"><?php echo $total_price ? currency_format($total_price) : '0đ'?></span></p>
                         </div>
                         <div>
                             <button class="btn-pay" onclick="order()">Thanh toán</button>
@@ -118,8 +158,8 @@
                 </div>
              </div>
         </div>
-        
     </div>
+    <?php require "./assets/components/footer.php"?>
     <!--Canh bao xoa san pham-->
     <div id="delete-product" style="display: none;">
         <div class="modal">
@@ -135,7 +175,7 @@
                             </div>
                             <div class="delete-product-btn">
                                 <button class="btn" onclick="hide_delete_product()">Không</button>
-                                <button class="btn btn--primary" onclick="delete_product2(),hide_delete_product()">Có</button>
+                                <button type="submit" class="btn btn--primary" onclick="delete_product2(),hide_delete_product()">Có</button>
                             </div>
                         </div>
                     </div>
@@ -143,7 +183,6 @@
             </div>
         </div>
     </div>
-    <?php require "./assets/components/footer.php"?>
     <!--Thanh toan-->
     <div id="order" style="display: none;">
         <div class="modal">
