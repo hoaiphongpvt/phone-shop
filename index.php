@@ -57,7 +57,7 @@
                         <?php include "./assets/components/search.php"?>
                     </div>
                  <div class="header_cart">
-                    <a href="#" onclick="login_required()" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
+                    <a href="giohang.php" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>

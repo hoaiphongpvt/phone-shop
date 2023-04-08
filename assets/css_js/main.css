@@ -299,13 +299,11 @@ body{
     border-radius: 5px;
 }   
 
-.phone-heading{
-    margin-top: 50px;
-}
 .phone-heading-text{
+    margin-top: 0;
     font-size: 2.5rem;
     color: var(--text-color);
-    padding: 5px 0px;
+    padding: 25px 0px 10px 0;
     border-bottom: 2px solid var(--boder-color);
     font-family:Arial, Helvetica, sans-serif;
 }
@@ -654,15 +652,14 @@ body{
 .cart-body-item{
     max-width: 200px;
     display: flex;
+    flex-basis: 50%;
+    flex-grow: 1;
     color: rgba(0,0,0,.87);
     font-size: 12px;
     margin: 10px 60px;
     justify-content: center;
 }
-.quantity{
-    padding: 10px;
-    border: 1px solid var(--boder-color);
-}
+
 .btn-pay{
     color: var(--white-color);
     height: 36px;
@@ -883,4 +880,23 @@ body{
 .has-err {
     margin: 5px 0 0 3px;
     color: red;
+}
+
+/* giỏi hàng */
+
+.total-cart {
+    color: #cd1818;
+    font-size: 18px;
+}
+
+.cart-body-info {
+    flex-basis: 50%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity {
+    display: flex;
 }
