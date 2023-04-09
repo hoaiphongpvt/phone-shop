@@ -185,8 +185,24 @@ body{
     padding: 0 8px;
 }
 .header_cart{
+    position: relative;
     width: 150px;
     text-align: center;
+}
+
+.header_cart::after {
+    position: absolute;
+    content: "6";
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background-color: #fff;
+    top: -5px;
+    left: 75px;
+    border-radius: 5px;
 }
 .header_search-button{
     background-color: var(--white-color);
@@ -207,6 +223,7 @@ body{
     margin-top: 6px;
     cursor: pointer;
 }
+
 .container{
     background-color: #ffffff;
 }
@@ -630,6 +647,7 @@ body{
     border-radius: 3px;
     display: flex;
     justify-content: space-between;
+    font-weight: 700;
 }
 .cart-heading-item{
     font-size: 14px;
@@ -755,7 +773,7 @@ body{
     border-radius: 50%;
 }
 .customer-info {
-    margin-top: 24px;
+    margin-top: 12px;
     font-size: 16px;
     padding: 0 20px;
     line-height: 1.5;
@@ -766,6 +784,7 @@ body{
 .customer-name{
     font-size: 20px;
     text-align: center;
+    font-weight: 700;
 }
 .customer-DateOfBirth {
     margin-top: 40px;
@@ -913,6 +932,17 @@ body{
     justify-content: space-around;
     width: 80px;
     font-size: 16px;
+}
+
+.quantity a {
+    width: 30px;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1;
+    color: var(--text-color);
+    font-size: 18px;
+    background-color: #f0f0f0;
 }
 
 .btn-delete {

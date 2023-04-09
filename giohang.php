@@ -62,7 +62,7 @@
                     <ul class="header__navbar--list">
                         <li class="list-item">
                             <a href="aboutus.php" class="list-item-iconlink">
-                                <i class="ti-bell list-item-icon"></i>
+                                <i class="ti-info list-item-icon"></i>
                                 Giới thiệu
                             </a>
                         </li>
@@ -118,9 +118,9 @@
                                     <div class="cart-body-info">
                                         <div><p>'.currency_format($row['GIA']).'</p></div>
                                         <div class="quantity">
-                                            <button>-</button>
+                                            <a href="capnhatsoluongsanpham.php?idsanpham='.$row['ID_SP'].'&idnguoidung='.$row['ID_NGUOIDUNG'].'&value=-">-</a>
                                             <div>'.$row['SOLUONG'].'</div>
-                                            <button>+</button>
+                                            <a href="capnhatsoluongsanpham.php?idsanpham='.$row['ID_SP'].'&idnguoidung='.$row['ID_NGUOIDUNG'].'&value=+">+</a>
                                         </div>
                                         <div>
                                             <a href="xoasanphamgiohang.php?idSP='.$row['ID'].'&idND='.$user['ID'].'"><button class="btn btn-delete">Xóa</button></a>
