@@ -57,7 +57,18 @@
                         <?php include "./assets/components/search.php"?>
                     </div>
                  <div class="header_cart">
-                    <a href="giohang.php" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
+
+                    <?php 
+                        if ($user) {
+                            echo '<a href="giohang.php" style="text-decoration: none;">
+                                    <i class="header_cart-icon ti-shopping-cart"></i>
+                                </a>';
+                        } else {
+                            echo '<span onclick="alert(\'Vui lòng đăng nhập\')">
+                                    <i class="header_cart-icon ti-shopping-cart"></i>
+                                </span>';
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
@@ -126,30 +137,11 @@
              </div>
         </div>
     </div>
-    <?php require "./assets/components/footer.php"?>
+    <?php include "./assets/components/footer.php"?>
+    <?php include "./assets/components/yeucaudangnhap.php"?>
+
     <script src="./assets/slider/banner.js"></script>
     <script src="./assets/js/timkiem.js"></script>
     <script src="./assets/js/loc.js"></script>
-    <!--Yeu cau dang nhap-->
-    <div id="login_required" style="display: none;">
-        <div class="modal">
-            <div class="modal_overlay"></div>
-            <div class="modal_body">    
-                <div class="auth-form">
-                    <div class="auth-form__container">
-                        <div class="cart-icon-check">
-                           <div  style="background-color: #cb1c22; border: 10px solid #cb1c22;"><i class="ti-alert"></i></div>
-                        </div>
-                        <div class="cart-notification">
-                            <p>Vui lòng đăng nhập!</p>
-                        </div>
-                        <div class="cart-button-OK">
-                            <button class="btn btn--primary" onclick="hide_login_required()">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+</body> 
 </html>

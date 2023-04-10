@@ -105,9 +105,16 @@
                             </div>
                             </div>
                             <div class="add-to-cart">
-                                <form method="POST" action="giohang.php?idsanpham=<?php echo $row['ID']?>" >
-                                    <button type="submit" name="themgiohang" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>
-                                </form>
+                                <?php 
+                                    if($user) {
+                                        echo '<form method="POST" action="giohang.php?idsanpham='.$row["ID"].'">
+                                                <button type="submit" name="themgiohang" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                                            </form>';
+                                    } else {
+                                        echo '<button onclick="login_required()" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>';
+                                    }
+                                ?>
+                                
                             </div>
                             <div class="buy-now">
                                 <button class="btn-buy-now" onclick="order()">MUA NGAY</button>
@@ -144,27 +151,7 @@
         <?php require "./assets/components/footer.php"?>
     </div>
     <script src="./assets/js/timkiem.js"></script>
-    <!--Yêu cầu đăng nhập-->
-    <div id="login_required" style="display: none;">
-        <div class="modal">
-            <div class="modal_overlay"></div>
-            <div class="modal_body">    
-                <div class="auth-form">
-                    <div class="auth-form__container">
-                        <div class="cart-icon-check">
-                           <div  style="background-color: #cb1c22; border: 10px solid #cb1c22;"><i class="ti-alert"></i></div>
-                        </div>
-                        <div class="cart-notification">
-                            <p>Vui lòng đăng nhập!</p>
-                        </div>
-                        <div class="cart-button-OK">
-                            <button class="btn btn--primary" onclick="hide_login_required()">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "./assets/components/yeucaudangnhap.php"?>
      <!-- Mua ngay -->
      <div id="order" style="display: none;">
         <div class="modal">

@@ -92,16 +92,20 @@
                             Đơn hàng đã mua
                         </div>
                         <div class="nav-oder">
-                            <p>Số thứ tự</p>
+                            <p>Mã đơn</p>
                             <p>Tên sản phẩm</p>
                             <p>Số lượng</p>
                             <p>Đơn giá</p>
+                            <p>Thành tiền</p>
+                            <p>Trạng thái</p>
                         </div>
                         <div class="customer-bought">
                             <div>1</div>
                             <div>Apple iPhone 13 Pro Max 128GB Gold</div>
                             <div>1</div>
                             <div>32.990.000đ</div>
+                            <div>32.990.000đ</div>
+                            <div>Đang xử lý</div>
                            </div>
                         </div>
                     </div>

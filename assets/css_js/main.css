@@ -78,7 +78,7 @@ body{
     width: 500px;
 }
 .auth-form__container{
-    padding: 0 32px 10px;
+    padding: 20px 32px;
 }
 .auth-form__header{
     text-align: center;
@@ -190,7 +190,7 @@ body{
     text-align: center;
 }
 
-.header_cart::after {
+/* .header_cart::after {
     position: absolute;
     content: "6";
     text-align: center;
@@ -203,7 +203,7 @@ body{
     top: -5px;
     left: 75px;
     border-radius: 5px;
-}
+} */
 .header_search-button{
     background-color: var(--white-color);
     border: none;
@@ -322,7 +322,6 @@ body{
     font-size: 2.5rem;
     color: var(--text-color);
     padding: 25px 0px 10px 0;
-    border-bottom: 2px solid var(--boder-color);
     font-family:Arial, Helvetica, sans-serif;
 }
 .phone-content{
@@ -455,6 +454,7 @@ body{
     border: none;
     color: #fff;
     font-size: 13px;
+    text-align: center;
     background-color: #2f80ed;
     cursor: pointer;
 }
@@ -682,8 +682,13 @@ body{
 }
 
 .btn-pay{
+    display: inline-block;
     color: var(--white-color);
+    padding: 0 10px;
+    font-size: 14px;
     height: 36px;
+    line-height: 36px;
+    text-decoration: none;
     border: none;
     border-radius: 2px;
     cursor: pointer;

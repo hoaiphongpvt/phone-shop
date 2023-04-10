@@ -8,7 +8,7 @@
         $idSP = $_GET['idsanpham'];
         $idND = $user['ID'];
 
-        $sql = "SELECT * FROM giohang WHERE ID_SP = $idSP AND ID_NGUOIDUNG = $idND";
+        $sql = "SELECT * FROM giohang WHERE ID_SP = '$idSP' AND ID_NGUOIDUNG = '$idND'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -152,7 +152,7 @@
                             <p>Tổng tiền: <span class="total-cart"><?php echo $total_price ? currency_format($total_price) : '0đ'?></span></p>
                         </div>
                         <div>
-                            <button class="btn-pay" onclick="order()">Thanh toán</button>
+                            <a href="thanhtoan.php" class="btn-pay">Thanh toán</a>
                         </div>
                     </div>
                 </div>
