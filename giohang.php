@@ -152,7 +152,7 @@
                             <p>Tổng tiền: <span class="total-cart"><?php echo $total_price ? currency_format($total_price) : '0đ'?></span></p>
                         </div>
                         <div>
-                            <a href="thanhtoan.php" class="btn-pay">Thanh toán</a>
+                            <button onclick="order()" class="btn-pay">Thanh toán</button>
                         </div>
                     </div>
                 </div>
@@ -183,47 +183,6 @@
             </div>
         </div>
     </div>
-    <!--Thanh toan-->
-    <div id="order" style="display: none;">
-        <div class="modal">
-            <div class="modal_overlay"></div>
-                <div class="modal_body">   
-                    <div class="auth-form">
-                        <div class="auth-form__container">
-                            <div class="order-header">
-                                    <div class="order-img">
-                                        <img src="../assets/apple/img/iphone-13-pro-max-gold-1-200x200.jpg" alt="">
-                                    </div>
-                                    <div class="order-text">
-                                        <span>Điện thoại iPhone 13 Pro Max</span>
-                                        <p>Bộ nhớ: 128GB</p>
-                                        <p>Màu: Vàng</p>
-                                    </div>
-                            </div>
-                            <div class="auth-form__form">
-                                <div class="choose-pay">
-                                    <label for="">
-                                        <input type="radio" name="pay" id="">
-                                        Thanh toán khi nhận hàng
-                                    </label>
-                                    <label for="">
-                                        <input type="radio" name="pay" id="">
-                                        Thanh toán qua ngân hàng
-                                    </label>
-                                </div>
-                                <div class="order-total">
-                                    <p class="order-total-text">Tổng tiền:</p>
-                                    <p class="order-total-price">32.990.000đ</p>
-                                </div>
-                            </div>
-                        <div class="auth-form__controls">
-                            <button class="btn btn--back" onclick="hide_cart()">TRỞ LẠI</button>
-                            <button class="btn btn--primary" onclick="DatHangThanhCong()">Thanh Toán</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "thongtinthanhtoan.php"?>
 </body>
 </html>

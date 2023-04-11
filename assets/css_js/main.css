@@ -120,7 +120,7 @@ body{
     cursor: pointer;
 }
 .auth-form__controls{
-    margin-top: 16px;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
 }
@@ -594,13 +594,14 @@ body{
 .order-total{
     margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .order-total-text{
     font-size: 14px;
     font-weight: 500;
 }
 .order-total-price{
+    margin-left: 8px;
     font-size: 14px;
     color: #f30c28;
 }
@@ -959,4 +960,9 @@ body{
     text-decoration: none;
     font-size: 18px;
     color: #000;
+}
+
+/* Thong tin thanh toan */
+.order-total {
+    margin-top: 15px;
 }
