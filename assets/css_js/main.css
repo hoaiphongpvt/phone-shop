@@ -820,7 +820,7 @@ body{
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
-    padding: 0 60px;
+    padding: 0 45px;
     font-size: 14px;
     border-bottom: 1px solid var(--boder-color);
     font-weight: 600;
@@ -831,14 +831,19 @@ body{
     justify-content: space-between;
     align-items: baseline;
     font-size: 14px;
-    padding: 20px 60px;
+    padding: 20px 20px;
     border-bottom: 1px solid var(--boder-color);
 }
 .customer-bought div{
-    max-width: 160px;
+    width: 200px;
     text-align: center;
-    padding-left: 20px;
+    line-height: 1.5;
 }
+
+.customer-bought div:first-child {
+    padding-left: 0px;
+}
+
 .edit-info--group {
     margin-bottom: 20px;
     font-size: 16px;

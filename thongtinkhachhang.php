@@ -99,14 +99,24 @@
                             <p>Thành tiền</p>
                             <p>Trạng thái</p>
                         </div>
-                        <div class="customer-bought">
-                            <div>1</div>
-                            <div>Apple iPhone 13 Pro Max 128GB Gold</div>
-                            <div>1</div>
-                            <div>32.990.000đ</div>
-                            <div>32.990.000đ</div>
-                            <div>Đang xử lý</div>
-                           </div>
+                            <?php 
+                                include "./assets/components/formatCurrency.php";
+                                $idND = $user['ID'];
+                                $sql = "SELECT * FROM hoadon INNER JOIN chitiethoadon ON hoadon.ID_HOADON = chitiethoadon.ID_HOADON JOIN sanpham ON sanpham.ID = chitiethoadon.ID_SP WHERE hoadon.ID_NGUOIDUNG='$idND'";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_assoc()) {
+                                    $item = "<div class='customer-bought'>
+                                                <div>".$row['ID_HOADON']."</div>
+                                                <div>".$row['TEN']."</div>
+                                                <div>".$row['SOLUONG']."</div>
+                                                <div>".currency_format($row['DONGIA'])."</div>
+                                                <div>".currency_format($row['TONGTIEN'])."</div>
+                                                <div>".$row['TRANGTHAI']."</div>
+                                            </div>";
+                                    echo $item;
+                                }
+                                
+                            ?>
                         </div>
                     </div>
                 </div>
