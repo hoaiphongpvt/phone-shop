@@ -93,25 +93,25 @@
                         </div>
                         <div class="nav-oder">
                             <p>Mã đơn</p>
-                            <p>Tên sản phẩm</p>
-                            <p>Số lượng</p>
-                            <p>Đơn giá</p>
                             <p>Thành tiền</p>
+                            <p>Ngày đặt</p>
+                            <p>Thanh toán</p>
                             <p>Trạng thái</p>
+                            <p>Chi tiết</p>
                         </div>
                             <?php 
                                 include "./assets/components/formatCurrency.php";
                                 $idND = $user['ID'];
-                                $sql = "SELECT * FROM hoadon INNER JOIN chitiethoadon ON hoadon.ID_HOADON = chitiethoadon.ID_HOADON JOIN sanpham ON sanpham.ID = chitiethoadon.ID_SP WHERE hoadon.ID_NGUOIDUNG='$idND'";
+                                $sql = "SELECT * FROM hoadon  WHERE hoadon.ID_NGUOIDUNG='$idND'";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_assoc()) {
                                     $item = "<div class='customer-bought'>
                                                 <div>".$row['ID_HOADON']."</div>
-                                                <div>".$row['TEN']."</div>
-                                                <div>".$row['SOLUONG']."</div>
-                                                <div>".currency_format($row['DONGIA'])."</div>
                                                 <div>".currency_format($row['TONGTIEN'])."</div>
+                                                <div>".date('d/m/Y', strtotime($row['NGAYLAP']))."</div>
+                                                <div>".$row['PHUONGTHUCTT']."</div>
                                                 <div>".$row['TRANGTHAI']."</div>
+                                                <a href='?idHD=".$row['ID_HOADON']."' class='btn btn-detail'>Xem</a>
                                             </div>";
                                     echo $item;
                                 }
@@ -168,6 +168,50 @@
                 </div>
             </div>
         </div>
+        <?php 
+            if (isset($_GET['idHD'])) {
+                $idHD = $_GET['idHD'];
+                echo '<div id="dangnhap">
+                <div class="modal">
+                    <div class="modal_overlay"></div>
+                        <div class="modal_body">   
+                            <div class="auth-form">
+                                <div class="auth-form__container">
+                                    <div class="auth-form__header">
+                                            <h3 class="auth-form__heading">CHI TIẾT ĐƠN HÀNG</h3>
+                                    </div>
+                                    <div class="auth-form__form">
+                                        <div class="title-detail">
+                                            <p>Tên sản phẩm</p>
+                                            <p>Hình ảnh</p>
+                                            <p>Đơn giá</p>
+                                            <p>Số lượng</p>
+                                        </div>';
+                                            $sql = "SELECT * FROM chitiethoadon INNER JOIN sanpham ON chitiethoadon.ID_SP = sanpham.ID WHERE ID_HOADON=".$idHD;
+                                            $result = $conn->query($sql);
+
+                                            while ($row = $result->fetch_assoc()) {
+                                                $item = '<div class="info-detail">
+                                                            <p>'.$row['TEN'].'</p>
+                                                            <img src='.$row['HINHANH'].' width="50px">
+                                                            <p>'.currency_format($row['DONGIA']).'</p>
+                                                            <p>'.$row['SOLUONG'].'</p>
+                                                        </div>';
+                                                
+                                                echo $item;
+                                            }
+                                        
+                echo                    '</div>
+                                <div class="auth-form__controls detail-btn-ok">
+                                    <button onclick="document.getElementById(\'dangnhap\').style.display = \'none\';" id="btn-dangnhap" class="btn btn--primary">OK</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            }
+        ?>
+    </div>
     </div>
     <script src="./assets/js/chechthongtinkhachhang.js"></script>
 </body>

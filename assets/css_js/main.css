@@ -658,6 +658,7 @@ body{
     flex-grow: 1;
 } */
 .cart-container{
+    min-height: 200px;
     border: 1px solid var(--boder-color);
 }
 .cart-products{
@@ -820,22 +821,27 @@ body{
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
-    padding: 0 45px;
     font-size: 14px;
     border-bottom: 1px solid var(--boder-color);
     font-weight: 600;
+    text-align: center;
+}
+
+.nav-oder > * {
+    width: 100px;
 }
 .customer-bought {
     height: 60px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     font-size: 14px;
-    padding: 20px 20px;
+    padding: 20px 0;
     border-bottom: 1px solid var(--boder-color);
+    text-align: center;
 }
 .customer-bought div{
-    width: 200px;
+    min-width: 100px;
     text-align: center;
     line-height: 1.5;
 }
@@ -920,7 +926,7 @@ body{
     color: red;
 }
 
-/* giỏi hàng */
+/* giỏ hàng */
 
 .total-cart {
     color: #cd1818;
@@ -970,4 +976,41 @@ body{
 /* Thong tin thanh toan */
 .order-total {
     margin-top: 15px;
+}
+
+.btn-detail {
+    line-height: 36px;
+}
+
+.title-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.title-detail > * {
+    width: 90px;
+}
+
+.info-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--boder-color);
+    padding: 5px 0;
+    text-align: center;
+    font-size: 12px;
+}
+
+.info-detail > * {
+    width: 90px;
+}
+
+.detail-btn-ok {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
 }
