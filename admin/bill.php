@@ -1,4 +1,7 @@
-
+<?php 
+    include "../connect.php";
+    include "../assets/components/formatCurrency.php";
+?>
 
 <!DOCTYPE html>
 <html>
@@ -98,19 +101,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="order-owner">
-                                                <img src=''>
-                                                <span>Nguyễn Hoài Phong</span>
-                                            </div>
-                                        </td>
-                                        <td>11/05/2023</td>
-                                        <td>Đang xử lý</td>
-                                        <td>Online</td>
-                                        <td>19.999.000đ</td>
-                                    </tr>                                    
+                                    <?php 
+                                        $sql = "SELECT * FROM hoadon INNER JOIN nguoidung WHERE hoadon.ID_NGUOIDUNG = nguoidung.ID";
+                                        $result = mysqli_query($conn, $sql);
+                                        while ($row = $result->fetch_assoc()) {
+                                            $s= '<tr>
+                                                <td>'.$row['ID_HOADON'].'</td>
+                                                <td>
+                                                    <div class="order-owner">
+                                                        <img src='.$row['HINHANH'].'>
+                                                        <span>'.$row['HOTEN'].'</span>
+                                                    </div>
+                                                </td>
+                                                <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
+                                                <td>'.$row['TRANGTHAI'].'</td>
+                                                <td>'.$row['PHUONGTHUCTT'].'</td>
+                                                <td>'.currency_format($row['TONGTIEN']).'</td>
+                                            </tr>';
+                                            echo $s;
+                                        }
+                                    ?>
+                                                                   
                                 </tbody>
                             </table>
                         </div>

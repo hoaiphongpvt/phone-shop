@@ -1,4 +1,7 @@
-
+<?php 
+    include "../connect.php";
+    include "../assets/components/formatCurrency.php";
+?>
 
 <!DOCTYPE html>
 <html>
@@ -93,24 +96,35 @@
                             <th>Sản phẩm</th>
                             <th>Giá</th>
                             <th>Hãng sản xuất</th>
-                            <th>Mô tả</th>
                             <th>Đánh giá</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <div class="order-owner">
-                                    <img src=''>
-                                    <span>Apple iPhone 11 128GB</span>
-                                </div>
-                            </td>
-                            <td>10.990.000đ</td>
-                            <td>Apple</td>
-                            <td>Đây là iPhone 11</td>
-                            <td>4 Sao</td>
-                        </tr>                                    
+                        <?php 
+                            $sql = "SELECT * FROM sanpham";
+                            $result = mysqli_query($conn, $sql);
+                            while ($row = $result->fetch_assoc()) {
+                                $rsNSX = mysqli_query($conn, "SELECT * FROM nsx WHERE ID=".$row['ID_NSX']);
+                                if ($rsNSX) {
+                                $nsx_data = mysqli_fetch_assoc($rsNSX);
+                                $nsx = $nsx_data['TENNSX'];
+                                }
+                                $s = '<tr>
+                                    <td>'.$row['ID'].'</td>
+                                    <td>
+                                        <div class="product">
+                                            <img src=../'.$row['HINHANH'].'>
+                                            <span>'.$row['TEN'].'</span>
+                                        </div>
+                                    </td>
+                                    <td>'.currency_format($row['GIA']).'</td>
+                                    <td>'.$nsx.'</td>
+                                    <td>'.$row['DANHGIA'].' Sao</td>
+                                </tr>';
+
+                                echo $s;
+                            }
+                        ?>                             
                     </tbody>
                 </table>
             </div>

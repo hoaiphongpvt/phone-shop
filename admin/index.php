@@ -191,7 +191,7 @@
                                     $result = $conn->query($sql);
                                     while($row = $result->fetch_assoc()) {
                                         $s = '<tr>
-                                                <td>'.$row['ID'].'</td>
+                                                <td>'.$row['ID_HOADON'].'</td>
                                                 <td>
                                                     <div class="order-owner">
                                                         <img src='.$row['HINHANH'].'>

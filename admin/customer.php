@@ -1,4 +1,7 @@
-
+<?php 
+    include "../connect.php";
+    include "../assets/components/formatCurrency.php";
+?>
 
 <!DOCTYPE html>
 <html>
@@ -100,21 +103,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="order-owner">
-                                                <img src=''>
-                                                <span>Nguyễn Hoài Phong</span>
-                                            </div>
-                                        </td>
-                                        <td>hoaiphongpvt@gmail.com</td>
-                                        <td>085559851</td>
-                                        <td>21/03/2002</td>
-                                        <td>Cần Giuộc - Long An</td>
-                                        <td>phongnon123</td>
-                                        <td>21032002</td>
-                                    </tr>                                    
+                                    <?php 
+                                        $sql = "SELECT * FROM nguoidung";
+                                        $result = mysqli_query($conn, $sql);
+                                        while ($row = $result->fetch_assoc()) {
+                                            $s = '<tr>
+                                                    <td>'.$row['ID'].'</td>
+                                                    <td>
+                                                        <div class="order-owner">
+                                                            <img src='.$row['HINHANH'].'>
+                                                            <span>'.$row['HOTEN'].'</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>'.$row['EMAIL'].'</td>
+                                                    <td>'.$row['DIENTHOAI'].'</td>
+                                                    <td>'.date('d/m/Y', strtotime($row['NGAYSINH'])).'</td>
+                                                    <td>'.$row['DIACHI'].'</td>
+                                                    <td>'.$row['TENDANGNHAP'].'</td>
+                                                    <td>'.$row['MATKHAU'].'</td>
+                                            </tr>';
+                                            echo $s;
+                                        }
+
+                                        $conn->close();
+                                    ?>                                 
                                 </tbody>
                             </table>
                         </div>

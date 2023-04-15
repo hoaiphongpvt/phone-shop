@@ -331,7 +331,7 @@ table {
     min-width: 1000px;
 }
 
-.order-owner {
+.order-owner, .product {
     display: flex;
     align-items: center;
     text-transform: capitalize;
@@ -345,6 +345,11 @@ table {
     margin-right: 15px;
 }
 
+.product img {
+    width: 45px;
+    height: 45px;
+    margin-right: 15px;
+}
 table thead tr {
     text-align: left;
 }
