@@ -55,3 +55,8 @@ function hide_update_info() {
    document.getElementById("edit-info").style.display = 'none';
    alert("Cập nhật thông tin thành công!");
 }
+
+//Thêm vào giỏ hàng
+function addToCart() {
+   alert("Đã thêm vào giỏ hàng.");
+}

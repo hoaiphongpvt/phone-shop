@@ -658,6 +658,7 @@ body{
     flex-grow: 1;
 } */
 .cart-container{
+    margin-bottom: 50px;
     min-height: 200px;
     border: 1px solid var(--boder-color);
 }

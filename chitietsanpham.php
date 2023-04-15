@@ -108,7 +108,7 @@
                                 <?php 
                                     if($user) {
                                         echo '<form method="POST" action="giohang.php?idsanpham='.$row["ID"].'">
-                                                <button type="submit" name="themgiohang" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                                                <button onclick="addToCart()" type="submit" name="themgiohang" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>
                                             </form>';
                                     } else {
                                         echo '<button onclick="login_required()" class="btn-add-to-cart">THÊM VÀO GIỎ HÀNG</button>';

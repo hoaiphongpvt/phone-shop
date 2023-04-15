@@ -1,0 +1,324 @@
+:root {
+    --body-bg: #fafafb;
+    --box-bg: #ffffff;
+    --main-color: #ff0000;
+    --text-color: #455560;
+    --text-second-color: #72849ab3;
+    --border-color: #e9e9e9;
+    --menu-item-active-bg: rgba(62, 121, 247, 0.1);
+
+    --box-border-radius: 15px;
+    --sidebar-size: 300px;
+    --sidebar-logo-img-size: 45px;
+    --sidebar-logo-size: 80px;
+    --profile-image-size: 45px;
+    --main-header-height: 80px;
+    --shadow: 0 1px 4px -1px rgb(0 0 0 / 15%);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+img {
+	width: 45px;
+    height: 45px; 
+	border-radius: 50%; 
+}
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+    display: inline-block;
+}
+
+.sidebar {
+    background-color: var(--box-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-size);
+    height: 100vh;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+}
+
+.sidebar-logo {
+    height: var(--sidebar-logo-size);
+    position: relative;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-logo img {
+    height: var(--sidebar-logo-img-size);
+    max-width: 100%;
+}
+
+.sidebar-close {
+    display: none;
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.sidebar-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-user-name {
+    margin-left: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.profile-image {
+    width: var(--profile-image-size);
+    height: var(--profile-image-size);
+    border-radius: 10px;
+}
+
+.sidebar-menu {
+    padding: 10px 0;
+    list-style-type: none;
+}
+
+.sidebar-menu > li > a {
+    width: 100%;
+    padding: 15px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: color 0.2s ease-in-out;
+}
+
+.sidebar-menu > li > a.active {
+    background-color: var(--menu-item-active-bg);
+    color: var(--main-color);
+    border-right: 4px solid var(--main-color);
+}
+
+.sidebar-menu > li > a:hover {
+    color: var(--main-color);
+}
+
+.sidebar-menu > li > a > i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.sidebar-menu-dropdown {
+    position: relative;
+}
+
+.sidebar-menu-dropdown .dropdown-icon {
+    position: absolute;
+    right: 15px;
+}
+
+.dropdown-icon {
+    --size: 15px;
+    --color: var(--text-color);
+    height: var(--size);
+    width: var(--size);
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-icon::after,
+.dropdown-icon::before {
+    --height: 2px;
+    content: "";
+    width: 50%;
+    height: var(--height);
+    border-radius: 2.5px;
+    position: absolute;
+    top: calc(50% - var(--height) / 2);
+    background-color: var(--color);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-icon::before {
+    left: calc(50% - var(--height) / 3);
+    transform-origin: center left;
+    transform: rotate(-45deg);
+}
+
+.dropdown-icon::after {
+    right: calc(50% - var(--height) / 3);
+    transform-origin: right;
+    transform: rotate(45deg);
+}
+
+.dropdown-icon.active::before {
+    transform: rotate(45deg);
+}
+
+.dropdown-icon.active::after {
+    transform: rotate(-45deg);
+}
+
+.sidebar-menu > li > a:hover > .dropdown-icon {
+    --color: var(--main-color);
+}
+
+.sidebar-menu-dropdown-content {
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.25s ease-in-out;
+}
+
+.sidebar-menu-dropdown-content > li > a {
+    padding-left: 50px;
+}
+
+.main {
+    padding-left: var(--sidebar-size);
+}
+
+.main-header {
+    height: var(--main-header-height);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--box-bg);
+    box-shadow: var(--shadow);
+}
+
+.mobile-toggle {
+    display: none;
+}
+
+.main-title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.box {
+    background-color: var(--box-bg);
+    padding: 20px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--box-border-radius);
+}
+
+.box-hover:hover {
+    border-color: var(--main-color);
+}
+
+.box-header {
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.box-body {
+    padding: 20px 0;
+}
+.overflow-scroll {
+    overflow-y: auto;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+.sidebar {
+    transition: transform 0.3s ease-in-out;
+    max-width: 100%;
+    z-index: 99;
+    transform: translateX(-100%);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.main {
+    padding-left: 0;
+}
+
+.mobile-toggle,
+.sidebar-close {
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.sidebar-close {
+    position: absolute;
+    right: -15px;
+}
+
+.panel {
+	width: 60%;
+	margin: 0 auto;
+	border: solid red 1px;
+}
+
+.panel-heading {
+	background-color: red;
+	padding: 10px;
+	color: white;
+}
+
+.panel-body {
+	padding: 10px;
+}
+
+.panel-body label {
+	font-weight: bold;
+}
+.form-group {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.form-control {
+	display: block;
+	width: 98%;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.table {
+	width: 100%;
+	text-align: center;
+}
+
+.table tr {
+	border-bottom: solid red 1px;
+}

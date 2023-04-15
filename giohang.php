@@ -152,7 +152,7 @@
                             <p>Tổng tiền: <span class="total-cart"><?php echo $total_price ? currency_format($total_price) : '0đ'?></span></p>
                         </div>
                         <div>
-                            <button onclick="order()" class="btn-pay">Thanh toán</button>
+                            <?php echo $total_price ? '<button onclick="order()" class="btn-pay">Thanh toán</button>' : "<h2 class='cart-empty'>Giỏ hàng trống</h2>" ?>   
                         </div>
                     </div>
                 </div>
