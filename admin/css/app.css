@@ -221,9 +221,15 @@ a {
     height: var(--main-header-height);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 20px;
     background-color: var(--box-bg);
     box-shadow: var(--shadow);
+}
+
+.main-option {
+    display: flex;
+    align-items: center;
 }
 
 .mobile-toggle {
