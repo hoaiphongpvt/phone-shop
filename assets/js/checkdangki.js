@@ -15,6 +15,8 @@ const errTendangnhap = document.getElementById('err-tendangnhap')
 const errMatkhau = document.getElementById('err-matkhau')
 const errXnMatkhau = document.getElementById('err-re-matkhau')
 const errDieukhoan = document.getElementById('err-dieukhoan')
+const hinhanh = document.getElementById('fileToUpload')
+const errHinhanh = document.getElementById('err-hinhanh')
 
 btnDangki.addEventListener('click', (e) => {
 
@@ -70,6 +72,11 @@ btnDangki.addEventListener('click', (e) => {
 
     if (!cbDieukhoan.checked) {
         errDieukhoan.innerText = "Bạn phải đồng ý với tất cả điều khoản và dịch vụ!"
+        e.preventDefault()
+    }
+
+    if (hinhanh.value == '') {
+        errHinhanh.innerText = "Vui lòng chọn hình ảnh!"
         e.preventDefault()
     }
 })

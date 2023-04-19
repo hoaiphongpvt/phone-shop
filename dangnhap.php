@@ -5,7 +5,7 @@
         $tendangnhap = $_POST['tendangnhap'];
         $matkhau = $_POST['matkhau'];
 
-        $sql = "SELECT * FROM nguoidung WHERE TENDANGNHAP = '".$tendangnhap."' AND MATKHAU='".$matkhau."'";
+        $sql = "SELECT * FROM nguoidung WHERE TENDANGNHAP = '".$tendangnhap."' AND MATKHAU='".$matkhau."' AND TRANGTHAI=1";
         $result = mysqli_query($conn, $sql);
         $data = mysqli_fetch_assoc($result);
 

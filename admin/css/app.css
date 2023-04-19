@@ -274,9 +274,27 @@ a {
 }
 
 .box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     text-transform: capitalize;
     font-size: 1.25rem;
     font-weight: 700;
+}
+
+.add-user {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+}
+
+.add-user:hover {
+    cursor: pointer;
+    opacity: 0.9;
 }
 
 .box-body {
@@ -447,3 +465,25 @@ table td {
         position: absolute;
         right: -15px;
     }
+
+.btn {
+    min-width: 60px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: .8rem;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn-update {
+    color: #FFF;
+    background-color: #4CAF50;
+}
+
+.btn-block {
+    color: #FFF;
+    background-color: #f44336;
+}

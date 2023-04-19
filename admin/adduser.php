@@ -1,5 +1,5 @@
 <?php 
-    include "connect.php";
+    include "../connect.php";
     
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,6 +21,8 @@
             $err['msg'] = "Đăng kí thành công";
             $sql = "INSERT INTO nguoidung (HOTEN, EMAIL, DIENTHOAI, DIACHI, NGAYSINH, HINHANH, TENDANGNHAP, MATKHAU, TRANGTHAI) VALUES ('$hoten', '$email', '$sdt',  '$diachi', '$ngaysinh', '$hinhanh', '$tendangnhap', '$matkhau', '$trangthai')";
             $result = mysqli_query($conn, $sql);
+
+            header('Location: customer.php');
         }
     }
 ?>
@@ -30,10 +32,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/img/logo-banner/logotheps.png" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css_js/base.css">
-    <link rel="stylesheet" href="./assets/css_js/main.css">
-    <title>Đăng kí</title>
+    <link rel="shortcut icon" href="../assets/img/logo-banner/logotheps.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css_js/base.css">
+    <link rel="stylesheet" href="../assets/css_js/main.css">
+    <title>Thêm khách hàng</title>
 </head>
 <body>
 <div id="dangki" style="display: block;">
@@ -43,7 +45,7 @@
             <div class="auth-form">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="auth-form__container">
                         <div class="auth-form__header">
-                            <h3 class="auth-form__heading">ĐĂNG KÍ</h3>
+                            <h3 class="auth-form__heading">ĐĂNG KÍ KHÁCH HÀNG</h3>
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
@@ -79,7 +81,7 @@
                                 <p class="has-err" id="err-re-matkhau"></p>
                             </div>
                         </div>
-                        <div class="auth-form__note">
+                        <!-- <div class="auth-form__note">
                             <div class="cbDieuKhoan">
                                 <input type="checkbox" id="dieukhoan" class="auth-form__policy-check">
                                 <p class="auth-form__policy-text">Tôi đồng ý với các điều khoản và dịch vụ.</p>
@@ -87,12 +89,12 @@
                             <div>
                                 <p class="has-err" id="err-dieukhoan"></p>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             <p class="has-err"><?php echo (isset($err['msg']) ? $err['msg'] : "")?></p>
                         </div>
                         <div class="auth-form__controls">
-                            <a href="index.php" class="btn btn--back">Trở lại</a>
+                            <a href="customer.php" class="btn btn--back">Trở lại</a>
                             <button type="submit" class="btn btn--primary" id="btn-dangki">Đăng kí</button>
                         </div>
                     </form>
@@ -100,7 +102,7 @@
             </div>
         </div>
     </div>
-    <script src="./assets/js/checkdangki.js"></script>
+    <script src="../assets/js/checkdangki.js"></script>
 </body>
 </html>
 

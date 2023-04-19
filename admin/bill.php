@@ -1,6 +1,9 @@
 <?php 
     include "../connect.php";
     include "../assets/components/formatCurrency.php";
+
+     //Lấy thông tin admin
+     $admin = $_SESSION['admin'];
 ?>
 
 <!DOCTYPE html>
@@ -35,9 +38,9 @@
                     Theps
                 </div>
             </div>
-            <button class="btn btn-outline">
+            <a href="logout.php" class="btn btn-outline">
                 <i class='bx bx-log-out bx-flip-horizontal'></i>
-            </button>
+            </a>
         </div>
         <ul class="sidebar-menu">
             <li>
@@ -72,11 +75,16 @@
            <!-- MAIN CONTENT -->
     <div class="main">
         <div class="main-header">
-            <div class="mobile-toggle" id="mobile-toggle">
-                <i class='bx bx-menu-alt-right'></i>
+            <div class="main-option">
+                    <div class="mobile-toggle" id="mobile-toggle">
+                        <i class='bx bx-menu-alt-right'></i>
+                    </div>
+                    <div class="main-title">
+                        Trang chủ 
+                    </div>
             </div>
-            <div class="main-title">
-                Trang chủ admin
+            <div class="main-name">
+                <p>Admin (<span><?php echo $admin['HOTEN'] ?></span>)</p>
             </div>
         </div>
         <div class="main-content">
@@ -109,7 +117,7 @@
                                                 <td>'.$row['ID_HOADON'].'</td>
                                                 <td>
                                                     <div class="order-owner">
-                                                        <img src='.$row['HINHANH'].'>
+                                                        <img src=.'.$row['HINHANH'].'>
                                                         <span>'.$row['HOTEN'].'</span>
                                                     </div>
                                                 </td>

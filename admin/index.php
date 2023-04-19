@@ -202,7 +202,7 @@
                                                 <td>'.$row['ID_HOADON'].'</td>
                                                 <td>
                                                     <div class="order-owner">
-                                                        <img src='.$row['HINHANH'].'>
+                                                        <img src=.'.$row['HINHANH'].'>
                                                         <span>'.$row['HOTEN'].'</span>
                                                     </div>
                                                 </td>

@@ -1,6 +1,9 @@
 <?php 
     include "../connect.php";
     include "../assets/components/formatCurrency.php";
+
+     //Lấy thông tin admin
+     $admin = $_SESSION['admin'];
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +22,7 @@
     <!-- APP CSS -->
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/app.css">
+
 </head>
 <body>
     <div class="sidebar">
@@ -35,9 +39,9 @@
                     Theps
                 </div>
             </div>
-            <button class="btn btn-outline">
+            <a href="logout.php" class="btn btn-outline">
                 <i class='bx bx-log-out bx-flip-horizontal'></i>
-            </button>
+            </a>
         </div>
         <ul class="sidebar-menu">
             <li>
@@ -72,11 +76,16 @@
            <!-- MAIN CONTENT -->
     <div class="main">
         <div class="main-header">
-            <div class="mobile-toggle" id="mobile-toggle">
-                <i class='bx bx-menu-alt-right'></i>
+            <div class="main-option">
+                    <div class="mobile-toggle" id="mobile-toggle">
+                        <i class='bx bx-menu-alt-right'></i>
+                    </div>
+                    <div class="main-title">
+                        Trang chủ 
+                    </div>
             </div>
-            <div class="main-title">
-                Trang chủ admin
+            <div class="main-name">
+                <p>Admin (<span><?php echo $admin['HOTEN'] ?></span>)</p>
             </div>
         </div>
         <div class="main-content">
@@ -86,7 +95,8 @@
                     <!-- ORDERS TABLE -->
                     <div class="box">
                         <div class="box-header">
-                            Danh sách khách hàng
+                            <p>Danh sách khách hàng</p>
+                            <a href="adduser.php" class="add-user">Thêm khách hàng</a>
                         </div>
                         <div class="box-body overflow-scroll">
                             <table>
@@ -100,6 +110,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Tên đăng nhập</th>
                                         <th>Mật khẩu</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,7 +122,7 @@
                                                     <td>'.$row['ID'].'</td>
                                                     <td>
                                                         <div class="order-owner">
-                                                            <img src='.$row['HINHANH'].'>
+                                                            <img src=.'.$row['HINHANH'].'>
                                                             <span>'.$row['HOTEN'].'</span>
                                                         </div>
                                                     </td>
@@ -121,10 +132,23 @@
                                                     <td>'.$row['DIACHI'].'</td>
                                                     <td>'.$row['TENDANGNHAP'].'</td>
                                                     <td>'.$row['MATKHAU'].'</td>
-                                            </tr>';
+                                                    <td>
+                                                        <div>';
+                                                        
+                                            $s .= '<a href="updatecustomer.php?idKH='.$row['ID'].'" class="btn btn-update">Sửa</a>';
+                                            
+                                            if ($row['TRANGTHAI'] == 1) {
+                                                $s .= '<a href="blockcustomer.php?idKH='.$row['ID'].'" class="btn btn-block">Khóa</a>';
+                                            } else {
+                                                $s .= '<a href="unblockcustomer.php?idKH='.$row['ID'].'" class="btn btn-block">Mở khóa</a>';
+                                            }
+                                            
+                                            $s .= '</div>
+                                                    </td>
+                                                </tr>';
                                             echo $s;
                                         }
-
+                                        
                                         $conn->close();
                                     ?>                                 
                                 </tbody>
