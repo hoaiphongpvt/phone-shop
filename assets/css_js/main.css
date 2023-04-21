@@ -1015,3 +1015,9 @@ body{
     justify-content: center;
     padding-top: 20px;
 }
+
+/* Sua thong tin khach hang */
+.upload-img {
+    margin-top: 25px;
+    font-size: 14px;
+}

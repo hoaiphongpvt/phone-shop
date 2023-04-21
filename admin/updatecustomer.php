@@ -10,37 +10,38 @@
         $ngaysinh= $_POST['ngaysinh'];
         $hinhanh = '';
         uploadHinh($hinhanh);
+        $linkanh = substr($hinhanh, 1);
         $tendangnhap = $_POST['tendangnhap'];
         $matkhau = $_POST['matkhau'];
 
-        $sql = "UPDATE nguoidung SET HOTEN='$hoten', EMAIL='$email', DIENTHOAI='$sdt', NGAYSINH='$ngaysinh', HINHANH='$hinhanh', DIACHI='$diachi', TENDANGNHAP='$tendangnhap', MATKHAU='$matkhau' WHERE ID='$id'";
+
+        $sql = "UPDATE nguoidung SET HOTEN='$hoten', EMAIL='$email', DIENTHOAI='$sdt', NGAYSINH='$ngaysinh', HINHANH='$linkanh', DIACHI='$diachi', TENDANGNHAP='$tendangnhap', MATKHAU='$matkhau' WHERE ID='$id'";
         $result = mysqli_query($conn, $sql);
 
         header("Location: customer.php");
 
     }
     function uploadHinh(&$hinhanh) {
-        $target_dir = "./assets/img/users/";
+        $target_dir = "../assets/img/users/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     
         // Check if image file is a actual image or fake image
-        
-          $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-          if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-          } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-          }
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+        } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+        }
         
     
         // Check if file already exists
         if (file_exists($target_file)) {
           //echo "Sorry, file already exists.";
-          $hinhSP = $target_file;
+          $hinhanh = $target_file;
           return 1;
         }
     
@@ -107,9 +108,11 @@
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <label for="fileToUpload">Chọn ảnh đại diện:</label>
-                                <input type="file" name="fileToUpload" id="fileToUpload">
-                                <p class="has-err" id="err-hinhanh"></p>
+                                <div class="upload-img">
+                                    <label for="fileToUpload">Chọn ảnh đại diện:</label>
+                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <p class="has-err" id="err-hinhanh"></p>
+                                </div>
                             </div>
                             <div class="auth-form__group">
                                 <input type="text" id="hoten" class="auth-form__input" name="hoten" value="<?php echo htmlspecialchars($row['HOTEN'], ENT_QUOTES); ?>" placeholder="Họ và tên">
@@ -161,7 +164,7 @@
             </div>
         </div>
     </div>
-    <script src="../assets/js/checkdangki.js"></script>
+    <script src="../assets/js/checksuathongtinkhachhang.js"></script>
 </body>
 </html>
 

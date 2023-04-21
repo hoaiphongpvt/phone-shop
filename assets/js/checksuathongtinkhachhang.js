@@ -13,8 +13,6 @@ const errSdt = document.getElementById('err-sdt')
 const errDiachi = document.getElementById('err-diachi')
 const errTendangnhap = document.getElementById('err-tendangnhap')
 const errMatkhau = document.getElementById('err-matkhau')
-const errXnMatkhau = document.getElementById('err-re-matkhau')
-const errDieukhoan = document.getElementById('err-dieukhoan')
 const hinhanh = document.getElementById('fileToUpload')
 const errHinhanh = document.getElementById('err-hinhanh')
 
@@ -64,16 +62,6 @@ btnDangki.addEventListener('click', (e) => {
         errMatkhau.innerText = "Vui lòng nhập mật khẩu"
         e.preventDefault()
     } 
-
-    if (xnMatkhau.value != matkhau.value) {
-        errXnMatkhau.innerText = "Mật khẩu nhập lại không chính xác!"
-        e.preventDefault()
-    }
-
-    if (!cbDieukhoan.checked) {
-        errDieukhoan.innerText = "Bạn phải đồng ý với tất cả điều khoản và dịch vụ!"
-        e.preventDefault()
-    }
 
     if (!hinhanh.value) {
         errHinhanh.innerText = "Vui lòng chọn hình ảnh!"
