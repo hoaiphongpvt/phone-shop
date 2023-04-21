@@ -109,9 +109,12 @@
                         <div class="auth-form__form">
                             <div class="auth-form__group">
                                 <div class="upload-img">
-                                    <label for="fileToUpload">Chọn ảnh đại diện:</label>
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
-                                    <p class="has-err" id="err-hinhanh"></p>
+                                    <img src=".<?php echo $row['HINHANH']?>">
+                                    <div>
+                                        <label for="fileToUpload">Chọn ảnh đại diện:</label>
+                                        <input type="file" name="fileToUpload" id="fileToUpload">
+                                        <p class="has-err" id="err-hinhanh"></p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="auth-form__group">

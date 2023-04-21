@@ -1,5 +1,74 @@
 <?php 
-    include "connect.php"
+    include "connect.php";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $user = $_SESSION['user'];
+        $hinhanh = '';
+        uploadHinh($hinhanh);
+        $hoten = $_POST['hoten'];
+        $ngaysinh = $_POST['ngaysinh'];
+        $sdt = $_POST['sdt'];
+        $email = $_POST['email'];
+        $diachi = $_POST['diachi'];
+
+        $sql = "UPDATE nguoidung SET HOTEN= '$hoten', HINHANH='$hinhanh', NGAYSINH='$ngaysinh', DIENTHOAI='$sdt', DIACHI='$diachi', EMAIL='$email' WHERE ID = ".$user['ID'];
+        $result = $conn->query($sql);
+        header('Location: thongtinkhachhang.php');
+    }
+
+    function uploadHinh(&$hinhanh) {
+        $target_dir = "./assets/img/users/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+        } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+        }
+        
+    
+        // Check if file already exists
+        if (file_exists($target_file)) {
+          //echo "Sorry, file already exists.";
+          $hinhanh = $target_file;
+          return 1;
+        }
+    
+        // Check file size
+        if ($_FILES["fileToUpload"]["size"] > 5000000) {
+          echo "Sorry, your file is too large.";
+          $uploadOk = 0;
+        }
+    
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+          echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+          $uploadOk = 0;
+        }
+    
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+          echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+            $hinhanh = $target_file;
+          } else {
+            echo "Sorry, there was an error uploading your file.";
+            $uploadOk = 0;
+          }
+        }
+        
+        return $uploadOk;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,36 +195,50 @@
                 <div class="modal_overlay"></div>
                     <div class="modal_body">    
                         <div class="auth-form">
-                            <form action="chinhsuathongtinnguoidung.php" method="GET" class="auth-form__container">
-                               <h1 style="text-align: center;">Cập nhật thông tin</h1>
-                               <div class="edit-info--group">
-                                <label for="">Ảnh đại điện:</label>
-                                <input type="text" id="hinhanh" name="hinhanh" placeholder="Dán link ảnh vào đây" class="edit-info-input">
-                                <p class="has-err" id="msg-hinhanh"></p>
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST" enctype="multipart/form-data" class="auth-form__container">
+                                <?php 
+                                    $ID = $user['ID'];
+                                    $sql = "SELECT * FROM nguoidung WHERE ID =".$ID;
+                                    $result = $conn->query($sql);
+                                    $row = $result->fetch_assoc();
+                                ?>
+                                <h1 style="text-align: center;">Cập nhật thông tin</h1>
+                                <div class="edit-info--group">
+                                    <!-- <label for="">Ảnh đại điện:</label>
+                                    <input type="text" id="hinhanh" name="hinhanh" placeholder="Dán link ảnh vào đây" class="edit-info-input">
+                                    <p class="has-err" id="msg-hinhanh"></p> -->
+                                    <div class="upload-img">
+                                        <img src="<?php echo $row['HINHANH']?>">
+                                        <div>
+                                            <label for="fileToUpload">Chọn ảnh đại diện:</label>
+                                            <input type="file" name="fileToUpload" id="fileToUpload">
+                                            <p class="has-err" id="err-hinhanh"></p>
+                                        </div>
+                                    </div>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Họ và tên:</label>
-                                <input type="text" id="hoten" name="hoten" class="edit-info-input" placeholder="Nhập họ và tên">
+                                <input type="text" id="hoten" name="hoten" class="edit-info-input" value="<?php echo htmlspecialchars($row['HOTEN'], ENT_QUOTES); ?>" placeholder="Nhập họ và tên">
                                 <p class="has-err" id="msg-hoten"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Ngày sinh:</label>
-                                <input type="date" id="ngaysinh" name="ngaysinh" class="edit-info-input" placeholder="Nhập ngày, tháng, năm sinh">
+                                <input type="date" id="ngaysinh" name="ngaysinh" value="<?php echo $row['NGAYSINH']?>" class="edit-info-input" placeholder="Nhập ngày, tháng, năm sinh">
                                 <p class="has-err" id="msg-ngaysinh"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Số điện thoại:</label>
-                                <input type="text" id="sdt" name="sdt" class="edit-info-input" placeholder="Nhập số điện thoại">
+                                <input type="text" id="sdt" name="sdt" value="<?php echo $row['DIENTHOAI']?>" class="edit-info-input" placeholder="Nhập số điện thoại">
                                 <p class="has-err" id="msg-sdt"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Email:</label>
-                                <input type="email" id="email" name="email" class="edit-info-input" placeholder="Nhập email">
+                                <input type="email" id="email" name="email" value="<?php echo $row['EMAIL']?>" class="edit-info-input" placeholder="Nhập email">
                                 <p class="has-err" id="msg-email"></p>
                               </div>
                               <div class="edit-info--group">
                                 <label for="">Địa chỉ:</label>
-                                <input type="text" id="diachi" name="diachi" class="edit-info-input" placeholder="Nhập địa chỉ">
+                                <input type="text" id="diachi" name="diachi" value="<?php echo $row['DIACHI']?>" class="edit-info-input" placeholder="Nhập địa chỉ">
                                 <p class="has-err" id="msg-diachi"></p>
                               </div>
                                <div class="edit-button">

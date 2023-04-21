@@ -1020,4 +1020,11 @@ body{
 .upload-img {
     margin-top: 25px;
     font-size: 14px;
+    text-align: center;
+}
+
+.upload-img img {
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 12px;
 }
