@@ -106,26 +106,40 @@
                                         <th>Tình trạng đơn</th>
                                         <th>Phương thức thanh toán</th>
                                         <th>Tổng cộng</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
-                                        $sql = "SELECT * FROM hoadon INNER JOIN nguoidung WHERE hoadon.ID_NGUOIDUNG = nguoidung.ID";
+                                        $sql = "SELECT hoadon.ID_HOADON, nguoidung.HINHANH, nguoidung.HOTEN, hoadon.NGAYLAP, hoadon.TRANGTHAI, hoadon.PHUONGTHUCTT, hoadon.TONGTIEN FROM hoadon INNER JOIN nguoidung WHERE hoadon.ID_NGUOIDUNG = nguoidung.ID;";
                                         $result = mysqli_query($conn, $sql);
                                         while ($row = $result->fetch_assoc()) {
-                                            $s= '<tr>
-                                                <td>'.$row['ID_HOADON'].'</td>
-                                                <td>
-                                                    <div class="order-owner">
-                                                        <img src=.'.$row['HINHANH'].'>
-                                                        <span>'.$row['HOTEN'].'</span>
-                                                    </div>
-                                                </td>
-                                                <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
-                                                <td>'.$row['TRANGTHAI'].'</td>
-                                                <td>'.$row['PHUONGTHUCTT'].'</td>
-                                                <td>'.currency_format($row['TONGTIEN']).'</td>
-                                            </tr>';
+                                            $s = '<tr>
+                                                    <td>'.$row['ID_HOADON'].'</td>
+                                                    <td>
+                                                        <div class="order-owner">
+                                                            <img src=".'.$row['HINHANH'].'">
+                                                            <span>'.$row['HOTEN'].'</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
+                                                    <td>
+                                                        <select name="status">';
+                                                            $statusOptions = array(
+                                                                'Đang xử lý' => 'Đang xử lý',
+                                                                'Đang giao' => 'Đang giao',
+                                                                'Đã giao' => 'Đã giao'
+                                                            );
+                                                            foreach ($statusOptions as $value => $label) {
+                                                                $selected = ($value == $row['TRANGTHAI']) ? 'selected' : '';
+                                                                $s .= '<option value="' . htmlspecialchars($value) . '" ' . $selected . '>' . htmlspecialchars($label) . '</option>';
+                                                            }
+                                                        $s .= '</select>
+                                                    </td>
+                                                    <td>'.$row['PHUONGTHUCTT'].'</td>
+                                                    <td>'.currency_format($row['TONGTIEN']).'</td>
+                                                    <td><a onclick="updateOrderStatus('.$row['ID_HOADON'].')" class="btn btn-update">Cập nhật</a></td>
+                                                </tr>';
                                             echo $s;
                                         }
                                     ?>
@@ -143,5 +157,6 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="./js/bill.js"> </script>
 	<script src="./js/app.js"></script>
+    <script src="./js/updateOrderStatus.js"></script>
 </body>
 </html>
