@@ -94,7 +94,8 @@
         <!-- ORDERS TABLE -->
         <div class="box">
             <div class="box-header">
-                Danh sách sản phẩm
+                <p>Danh sách sản phẩm</p>
+                <a href="addproduct.php" class="add-user">Thêm sản phẩm</a>
             </div>
             <div class="box-body overflow-scroll">
                 <table>
@@ -105,6 +106,7 @@
                             <th>Giá</th>
                             <th>Hãng sản xuất</th>
                             <th>Đánh giá</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,6 +130,12 @@
                                     <td>'.currency_format($row['GIA']).'</td>
                                     <td>'.$nsx.'</td>
                                     <td>'.$row['DANHGIA'].' Sao</td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="#" class="btn-update">Sửa</a>
+                                            <a href="#" class="btn-block">Xóa</a>
+                                        </div>
+                                    </td>
                                 </tr>';
 
                                 echo $s;

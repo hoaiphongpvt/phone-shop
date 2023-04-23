@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/app.css">
 </head>
-<body onLoad="loadAllBill()">
+<body>
     <div class="sidebar">
         <div class="sidebar-logo">
             <img src="../assets/img/logo-banner/logotheps.png" alt="Company logo">

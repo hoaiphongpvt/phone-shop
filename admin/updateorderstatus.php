@@ -6,7 +6,9 @@
         $status = $_GET['status'];
         $date = date('Y-m-d');
 
-        if ($status = 'Đã giao') {
+        echo $status;
+
+        if ($status == "Đã giao") {
             $sql = "UPDATE hoadon SET TRANGTHAI='$status', NGAYGIAO='$date' WHERE ID_HOADON='$id'";
             $result = mysqli_query($conn, $sql);
         } else {
