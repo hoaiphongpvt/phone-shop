@@ -519,13 +519,13 @@ table td {
     padding-left: 5px;
 }
 
-.form-item .review {
+.form-item #preview {
     width: 200px;
     height: 300px;
     object-fit: contain;
 }
 
-.form-item .review-detail {
+.form-item #preview-detail {
     width: 300px;
     height: 200px;
     object-fit: contain;
@@ -555,4 +555,9 @@ table td {
     height: 30px;
     color: #FFF;
     background-color: #008CBA;
+}
+
+.has-err {
+    font-size: 12px;
+    color: red;
 }

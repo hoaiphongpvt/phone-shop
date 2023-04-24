@@ -9,10 +9,12 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hinhanh = '';
         uploadHinh($hinhanh, 'hinhanh');
+        $linkanh = substr($hinhanh, 1);
         $anhchitiet = '';
         uploadHinh($anhchitiet, 'anhchitiet');
+        $linkanhchitiet = substr($anhchitiet, 1);
         $ten = $_POST['ten'];
-        $hsx = $_POST['hangsx'];
+        $hsx = intval($_POST['hangsx']);
         $gia = $_POST['gia'];
         $mota = $_POST['mota'];
         $danhgia = $_POST['danhgia'];
@@ -24,12 +26,24 @@
         $chip = $_POST['chip'];
         $sim = $_POST['sim'];
 
-        echo $hinhanh, $anhchitiet;
+        //Thêm sản phẩm
+        $sql = "INSERT INTO sanpham (TEN, GIA, HINHANH, ID_NSX, MOTA, DANHGIA) VALUES ('$ten', '$gia', '$linkanh', $hsx, '$mota', '$danhgia')";
+        $result = mysqli_query($conn, $sql);
+
+        //Thêm chi tiêt sản phẩm
+        $idSP = mysqli_insert_id($conn);
+        $sql = "INSERT INTO chitietsanpham (ID_SP, ANHTHONGSO, TS_MANHINH, TS_BONHO, TS_CAMERA, TS_PIN, HDH, CHIP, SIM) VALUES ('$idSP', '$linkanhchitiet', '$manhinh', '$bonho', '$camera', '$pin', '$hdh', '$chip', '$sim')";
+        $result = mysqli_query($conn, $sql);
+
+        $conn->close();
+
+        header("Location: product.php");
+
     }
 
     //Hàm upload hình ảnh
     function uploadHinh(&$hinhanh, $name) {
-        $target_dir = "./assets/img/products/";
+        $target_dir = "../assets/img/products/";
         $target_file = $target_dir . basename($_FILES[$name]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -70,7 +84,7 @@
           echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
-          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+          if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES[$name]["name"])). " has been uploaded.";
             $hinhanh = $target_file;
           } else {
@@ -174,17 +188,19 @@
                     <p>Thêm sản phẩm</p>
                 </div>
                 <div class="box-body overflow-scroll">
-                    <form id="frmThemSP" action="<?php echo $_SERVER["PHP_SELF"];?>" method='POST'>
+                    <form id="frmThemSP" action="<?php echo $_SERVER["PHP_SELF"];?>" method='POST' enctype="multipart/form-data">
                         <div class="form-group boder">
                             <div class="form-item boder col">
-                                <img src="../assets/apple/img/iphone-11.jpg" alt="" class="review" id="review">
+                                <img src="../assets/img/products/no-image.jpg" alt="" class="review" id="preview">
                                 Chọn ảnh sản phẩm
-                                <input type="file" name="hinhanh" onchange="previewImage(event)">
+                                <input type="file" id="hinhanh" name="hinhanh" onchange="previewImage(event)">
+                                <p class="has-err" id="err-hinhanh"></p>
                             </div>
                             <div class="form-item boder col">
-                            <img src="../assets/apple/img/iphone-11-detail.jpg" alt="" class="review-detail">
+                            <img src="../assets/img/products/product-default.png" alt="" id="preview-detail">
                                 Chọn ảnh chi tiết sản phẩm
-                                <input type="file" name="anhchitiet">
+                                <input type="file" id="anhchitiet" name="anhchitiet" onchange="previewImageDetail(event)">
+                                <p class="has-err" id="err-anhchitiet"></p>
                             </div>
                        </div>
                        <div class="form-group boder">
@@ -192,6 +208,7 @@
                                 <label for="">Tên sản phẩm</label>
                                 <input type="text" name="ten" id="tensp">
                             </div>
+                            <p class="has-err" id="err-tensp"></p>
                             <div class="form-item">
                                 <label for="">Hãng sản xuất</label>
                                 <select name="hangsx" id="hangsx">
@@ -203,47 +220,58 @@
                                     <option value="5">Vivo</option>
                                 </select>
                             </div>
+                            <p class="has-err" id="err-hsx"></p>
                             <div class="form-item">
                                 <label for="">Giá</label>
                                 <input type="number" name="gia" min="1000000" id="gia" placeholder="Đơn vị VNĐ">
                             </div>
+                            <p class="has-err" id="err-gia"></p>
                             <div class="form-item">
                                 <label for="">Mô tả sản phẩm</label>
                                 <textarea name="mota" id="mota"></textarea>
                             </div>
+                            <p class="has-err" id="err-mota"></p>
                             <div class="form-item">
                                 <label for="">Đánh giá</label>
                                 <input name="danhgia" id="danhgia" placeholder="Số sao"></input>
                             </div>
+                            <p class="has-err" id="err-danhgia"></p>
                             <div class="form-item">
                                 <label for="">Thông số màn hình</label>
                                 <input name="manhinh" id="manhinh"></input>
                             </div>
+                            <p class="has-err" id="err-manhinh"></p>
                             <div class="form-item">
                                 <label for="">Thông số bộ nhớ</label>
-                                <input name="bonho" id="bonho"></input>
+                                <input name="bonho" id="bonho"></input>  
                             </div>
+                            <p class="has-err" id="err-bonho"></p>
                             <div class="form-item">
                                 <label for="">Thông số camera</label>
                                 <input name="camera" id="camera"></input>
                             </div>
+                            <p class="has-err" id="err-camera"></p>
                             <div class="form-item">
                                 <label for="">Thông số pin</label>
                                 <input name="pin" id="pin"></input>
                             </div>
+                            <p class="has-err" id="err-pin"></p>
                             <div class="form-item">
                                 <label for="">Hệ điều hành</label>
                                 <input name="hdh" id="hdh"></input>
                             </div>
+                            <p class="has-err" id="err-hdh"></p>
                             <div class="form-item">
                                 <label for="">Chipset</label>
                                 <input name="chip" id="chip"></input>
                             </div>
+                            <p class="has-err" id="err-chip"></p>
                             <div class="form-item">
                                 <label for="">Sim</label>
                                 <input name="sim" id="sim"></input>
                             </div>
-                            <button type="submit" class="btn btn-submit">THÊM</button>
+                            <p class="has-err" id="err-sim"></p>
+                            <button type="submit" id="btn-submit" class="btn btn-submit">THÊM</button>
                        </div>
                     </form>
                 </div>
@@ -257,6 +285,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="./js/product.js"> </script>
 	<script src="./js/app.js"></script>
-    <script src="./js//addproduct.js"></script>
+    <script src="./js/preview-img.js"></script>
+    <script src="./js/validateAddProduct.js"></script>
 </body>
 </html>

@@ -110,7 +110,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Tên đăng nhập</th>
                                         <th>Mật khẩu</th>
-                                        <th>Actions</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

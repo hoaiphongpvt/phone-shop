@@ -106,7 +106,7 @@
                                         <th>Tình trạng đơn</th>
                                         <th>Phương thức thanh toán</th>
                                         <th>Tổng cộng</th>
-                                        <th>Actions</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

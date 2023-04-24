@@ -106,7 +106,7 @@
                             <th>Giá</th>
                             <th>Hãng sản xuất</th>
                             <th>Đánh giá</th>
-                            <th>Actions</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
