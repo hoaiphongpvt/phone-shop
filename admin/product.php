@@ -132,7 +132,7 @@
                                     <td>'.$row['DANHGIA'].' Sao</td>
                                     <td>
                                         <div class="actions">
-                                            <a href="#" class="btn-update">Sửa</a>
+                                            <a href="updateproduct.php?ID='.$row['ID'].'" class="btn-update">Sửa</a>
                                             <a href="#" class="btn-block">Xóa</a>
                                         </div>
                                     </td>
