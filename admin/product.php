@@ -133,7 +133,7 @@
                                     <td>
                                         <div class="actions">
                                             <a href="updateproduct.php?ID='.$row['ID'].'" class="btn-update">Sửa</a>
-                                            <a href="#" class="btn-block">Xóa</a>
+                                            <button class="btn-block" onclick="deleteProduct('.$row['ID'].')">Xóa</button>
                                         </div>
                                     </td>
                                 </tr>';
@@ -184,6 +184,7 @@
     <div class="overlay"></div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="./js/product.js"> </script>
+	<script src="./js/deleteProduct.js"> </script>
 	<script src="./js/app.js"></script>
 </body>
 </html>
