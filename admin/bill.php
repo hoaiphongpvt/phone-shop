@@ -2,8 +2,8 @@
     include "../connect.php";
     include "../assets/components/formatCurrency.php";
 
-     //Lấy thông tin admin
-     $admin = $_SESSION['admin'];
+    //Lấy thông tin admin
+    $admin = $_SESSION['admin'];
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +94,45 @@
                     <!-- ORDERS TABLE -->
                     <div class="box">
                         <div class="box-header">
-                            Danh sách đơn hàng
+                            <p>Danh sách đơn hàng</p>
+                            <form class="view-orders" action="<?php echo $_SERVER["PHP_SELF"];?>" method="GET">
+                                <p>Lọc theo:</p>
+                                <div class="status-order">
+                                    <select name="statusOrder" id="statusOrder">
+                                        <option value="">Tình trạng đơn hàng</option>
+                                        <option value="Đang xử lý">Đang xử lý</option>
+                                        <option value="Đang giao">Đang giao</option>
+                                        <option value="Đã giao">Đã giao</option>
+                                    </select>
+                                </div>
+                                <div class="date-order">
+                                    <p>Từ ngày:</p>
+                                    <input type="date" name="from" id="from">
+                                    <p>Đến ngày:</p>
+                                    <input type="date" name="to" id="to">
+                                </div>
+                                <div class="address-order">
+                                    <p>Địa chỉ:</p>
+                                    <select name="addressOrder" id="addressOrder">
+                                        <option value="">Tỉnh thành</option>
+                                        <option value="Hồ Chí Minh">TP.Hồ Chí Minh</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                        <option value="Long An">Long An</option>
+                                        <option value="Bình Dương">Bình Dương</option>
+                                        <option value="Đồng Nai">Đồng Nai</option>
+                                        <option value="Tây Ninh">Tây Ninh</option>
+                                        <option value="Tiền Giang">Tiền Giang</option>
+                                        <option value="Bến Tre">Bến Tre</option>
+                                        <option value="Trà Vinh">Trà Vinh</option>
+                                        <option value="Vĩnh Long">Vĩnh Long</option>
+                                        <option value="Đồng Tháp">Đồng Tháp</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" id="btn-submit" class="btn btn-block">OK</button>
+                            </form>
                         </div>
                         <div class="box-body overflow-scroll">
                             <table>
@@ -104,44 +142,169 @@
                                         <th>Khách hàng</th>
                                         <th>Ngày mua</th>
                                         <th>Tình trạng đơn</th>
-                                        <th>Phương thức thanh toán</th>
+                                        <th>Thanh toán</th>
+                                        <th>Địa chỉ</th>
                                         <th>Tổng cộng</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
-                                        $sql = "SELECT hoadon.ID_HOADON, nguoidung.HINHANH, nguoidung.HOTEN, hoadon.NGAYLAP, hoadon.TRANGTHAI, hoadon.PHUONGTHUCTT, hoadon.TONGTIEN FROM hoadon INNER JOIN nguoidung WHERE hoadon.ID_NGUOIDUNG = nguoidung.ID;";
-                                        $result = mysqli_query($conn, $sql);
-                                        while ($row = $result->fetch_assoc()) {
-                                            $s = '<tr>
-                                                    <td>'.$row['ID_HOADON'].'</td>
-                                                    <td>
-                                                        <div class="order-owner">
-                                                            <img src=".'.$row['HINHANH'].'">
-                                                            <span>'.$row['HOTEN'].'</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
-                                                    <td>
-                                                        <select name="status">';
-                                                            $statusOptions = array(
-                                                                'Đang xử lý' => 'Đang xử lý',
-                                                                'Đang giao' => 'Đang giao',
-                                                                'Đã giao' => 'Đã giao'
-                                                            );
-                                                            foreach ($statusOptions as $value => $label) {
-                                                                $selected = ($value == $row['TRANGTHAI']) ? 'selected' : '';
-                                                                $s .= '<option value="' . htmlspecialchars($value) . '" ' . $selected . '>' . htmlspecialchars($label) . '</option>';
-                                                            }
-                                                        $s .= '</select>
-                                                    </td>
-                                                    <td>'.$row['PHUONGTHUCTT'].'</td>
-                                                    <td>'.currency_format($row['TONGTIEN']).'</td>
-                                                    <td><a onclick="updateOrderStatus('.$row['ID_HOADON'].')" class="btn btn-update">Cập nhật</a></td>
-                                                </tr>';
-                                            echo $s;
+
+                                        if (!isset($_GET['statusOrder']) && !isset($_GET['from']) && !isset($_GET['to']) && !isset($_GET['addressOrder'])) {
+                                            $sql = "SELECT hoadon.ID_HOADON, nguoidung.HINHANH, nguoidung.HOTEN, hoadon.NGAYLAP, hoadon.TRANGTHAI, hoadon.PHUONGTHUCTT, hoadon.DIACHI, hoadon.TONGTIEN FROM hoadon INNER JOIN nguoidung ON hoadon.ID_NGUOIDUNG = nguoidung.ID;";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = $result->fetch_assoc()) {
+                                                $s = '<tr>
+                                                        <td>'.$row['ID_HOADON'].'</td>
+                                                        <td>
+                                                            <div class="order-owner">
+                                                                <img src=".'.$row['HINHANH'].'">
+                                                                <span>'.$row['HOTEN'].'</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
+                                                        <td>
+                                                            <select name="status">';
+                                                                $statusOptions = array(
+                                                                    'Đang xử lý' => 'Đang xử lý',
+                                                                    'Đang giao' => 'Đang giao',
+                                                                    'Đã giao' => 'Đã giao'
+                                                                );
+                                                                foreach ($statusOptions as $value => $label) {
+                                                                    $selected = ($value == $row['TRANGTHAI']) ? 'selected' : '';
+                                                                    $s .= '<option value="' . htmlspecialchars($value) . '" ' . $selected . '>' . htmlspecialchars($label) . '</option>';
+                                                                }
+                                                            $s .= '</select>
+                                                        </td>
+                                                        <td>'.$row['PHUONGTHUCTT'].'</td>
+                                                        <td>'.$row['DIACHI'].'</td>
+                                                        <td>'.currency_format($row['TONGTIEN']).'</td>
+                                                        <td><a onclick="updateOrderStatus('.$row['ID_HOADON'].')" class="btn btn-update">Cập nhật</a></td>
+                                                    </tr>';
+                                                echo $s;
+                                            }
+                                        } 
+                                        
+                                        if(isset($_GET['statusOrder']) && $_GET['from'] == '' && $_GET['to'] == '' && $_GET['addressOrder'] == '') {
+                                            $statusOrder = $_GET['statusOrder'];
+                                            $sql = "SELECT hoadon.ID_HOADON, nguoidung.HINHANH, nguoidung.HOTEN, hoadon.NGAYLAP, hoadon.TRANGTHAI, hoadon.PHUONGTHUCTT, hoadon.DIACHI, hoadon.TONGTIEN 
+                                                    FROM hoadon 
+                                                    INNER JOIN nguoidung 
+                                                    ON hoadon.ID_NGUOIDUNG = nguoidung.ID 
+                                                    WHERE hoadon.TRANGTHAI='$statusOrder'";
+
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = $result->fetch_assoc()) {
+                                                $s = '<tr>
+                                                        <td>'.$row['ID_HOADON'].'</td>
+                                                        <td>
+                                                            <div class="order-owner">
+                                                                <img src=".'.$row['HINHANH'].'">
+                                                                <span>'.$row['HOTEN'].'</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
+                                                        <td>
+                                                            <select name="status">';
+                                                                $statusOptions = array(
+                                                                    'Đang xử lý' => 'Đang xử lý',
+                                                                    'Đang giao' => 'Đang giao',
+                                                                    'Đã giao' => 'Đã giao'
+                                                                );
+                                                                foreach ($statusOptions as $value => $label) {
+                                                                    $selected = ($value == $row['TRANGTHAI']) ? 'selected' : '';
+                                                                    $s .= '<option value="' . htmlspecialchars($value) . '" ' . $selected . '>' . htmlspecialchars($label) . '</option>';
+                                                                }
+                                                            $s .= '</select>
+                                                        </td>
+                                                        <td>'.$row['PHUONGTHUCTT'].'</td>
+                                                        <td>'.$row['DIACHI'].'</td>
+                                                        <td>'.currency_format($row['TONGTIEN']).'</td>
+                                                        <td><a onclick="updateOrderStatus('.$row['ID_HOADON'].')" class="btn btn-update">Cập nhật</a></td>
+                                                    </tr>';
+                                                echo $s;
+                                            }
+                                        } 
+                                        
+                                        if(isset($_GET['from']) && isset($_GET['to']) && $_GET['statusOrder'] == '' && $_GET['addressOrder'] == '' ) {
+                                            $from = $_GET['from'];
+                                            $to = $_GET['to'];
+                                            $sql = "SELECT hoadon.ID_HOADON, nguoidung.HINHANH, nguoidung.HOTEN, hoadon.NGAYLAP, hoadon.TRANGTHAI, hoadon.PHUONGTHUCTT, hoadon.DIACHI, hoadon.TONGTIEN FROM hoadon INNER JOIN nguoidung ON hoadon.ID_NGUOIDUNG = nguoidung.ID WHERE NGAYGIAO BETWEEN '$from' AND '$to'";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = $result->fetch_assoc()) {
+                                                $s = '<tr>
+                                                        <td>'.$row['ID_HOADON'].'</td>
+                                                        <td>
+                                                            <div class="order-owner">
+                                                                <img src=".'.$row['HINHANH'].'">
+                                                                <span>'.$row['HOTEN'].'</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
+                                                        <td>
+                                                            <select name="status">';
+                                                                $statusOptions = array(
+                                                                    'Đang xử lý' => 'Đang xử lý',
+                                                                    'Đang giao' => 'Đang giao',
+                                                                    'Đã giao' => 'Đã giao'
+                                                                );
+                                                                foreach ($statusOptions as $value => $label) {
+                                                                    $selected = ($value == $row['TRANGTHAI']) ? 'selected' : '';
+                                                                    $s .= '<option value="' . htmlspecialchars($value) . '" ' . $selected . '>' . htmlspecialchars($label) . '</option>';
+                                                                }
+                                                            $s .= '</select>
+                                                        </td>
+                                                        <td>'.$row['PHUONGTHUCTT'].'</td>
+                                                        <td>'.$row['DIACHI'].'</td>
+                                                        <td>'.currency_format($row['TONGTIEN']).'</td>
+                                                        <td><a onclick="updateOrderStatus('.$row['ID_HOADON'].')" class="btn btn-update">Cập nhật</a></td>
+                                                    </tr>';
+                                                echo $s;
+                                            }
                                         }
+                                        
+                                        if (isset($_GET['addressOrder']) && $_GET['from'] == '' && $_GET['to'] == '' && $_GET['statusOrder'] == '') {
+                                           
+                                            $addressOrder = $_GET['addressOrder'];
+                                            $sql = "SELECT hoadon.ID_HOADON, nguoidung.HINHANH, nguoidung.HOTEN, hoadon.NGAYLAP, hoadon.TRANGTHAI, hoadon.PHUONGTHUCTT, hoadon.DIACHI, hoadon.TONGTIEN 
+                                                    FROM hoadon 
+                                                    INNER JOIN nguoidung 
+                                                    ON hoadon.ID_NGUOIDUNG = nguoidung.ID 
+                                                    WHERE hoadon.DIACHI LIKE '%$addressOrder%'";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = $result->fetch_assoc()) {
+                                                $s = '<tr>
+                                                        <td>'.$row['ID_HOADON'].'</td>
+                                                        <td>
+                                                            <div class="order-owner">
+                                                                <img src=".'.$row['HINHANH'].'">
+                                                                <span>'.$row['HOTEN'].'</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>'.date('d/m/Y', strtotime($row['NGAYLAP'])).'</td>
+                                                        <td>
+                                                            <select name="status">';
+                                                                $statusOptions = array(
+                                                                    'Đang xử lý' => 'Đang xử lý',
+                                                                    'Đang giao' => 'Đang giao',
+                                                                    'Đã giao' => 'Đã giao'
+                                                                );
+                                                                foreach ($statusOptions as $value => $label) {
+                                                                    $selected = ($value == $row['TRANGTHAI']) ? 'selected' : '';
+                                                                    $s .= '<option value="' . htmlspecialchars($value) . '" ' . $selected . '>' . htmlspecialchars($label) . '</option>';
+                                                                }
+                                                            $s .= '</select>
+                                                        </td>
+                                                        <td>'.$row['PHUONGTHUCTT'].'</td>
+                                                        <td>'.$row['DIACHI'].'</td>
+                                                        <td>'.currency_format($row['TONGTIEN']).'</td>
+                                                        <td><a onclick="updateOrderStatus('.$row['ID_HOADON'].')" class="btn btn-update">Cập nhật</a></td>
+                                                    </tr>';
+                                                echo $s;
+                                            }
+                                        }
+                                        
                                     ?>
                                                                    
                                 </tbody>
@@ -158,5 +321,6 @@
 	<script src="./js/bill.js"> </script>
 	<script src="./js/app.js"></script>
     <script src="./js/updateOrderStatus.js"></script>
+    <script src="./js/checkFilterOrder.js"></script>
 </body>
 </html>
