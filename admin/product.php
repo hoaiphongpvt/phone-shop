@@ -95,6 +95,13 @@
         <div class="box">
             <div class="box-header">
                 <p>Danh sách sản phẩm</p>
+                <div>
+                <form class="search-product" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . (isset($_GET['name']) ? '?name=' . htmlspecialchars($_GET['name']) : ''); ?>" method="GET">
+                    <input type="text" name="name" placeholder="Tìm kiếm sản phẩm">
+                    <button type="submit">Tìm</button>
+                </form>
+
+                </div>
                 <a href="addproduct.php" class="add-user">Thêm sản phẩm</a>
             </div>
             <div class="box-body overflow-scroll">
@@ -111,7 +118,13 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $sql = "SELECT * FROM sanpham";
+
+                            if (isset($_GET["name"])) {
+                                $name = $_GET["name"];
+                                $sql = "SELECT * FROM sanpham WHERE TEN LIKE '%$name%'";
+                            } else {
+                                $sql = "SELECT * FROM sanpham";  
+                            } 
                             $result = mysqli_query($conn, $sql);
                             while ($row = $result->fetch_assoc()) {
                                 $rsNSX = mysqli_query($conn, "SELECT * FROM nsx WHERE ID=".$row['ID_NSX']);

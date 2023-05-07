@@ -600,3 +600,22 @@ table td {
     justify-content: space-between;
     margin-right: 10px;
 }
+
+/* Search Product */
+.search-product input {
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.search-product button {
+    margin-left: 10px;
+    min-width: 50px;
+    border: none;
+    background-color: #04d182;
+    color: #FFF;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}

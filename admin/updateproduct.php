@@ -330,7 +330,7 @@
                             </div>
                             <p class="has-err" id="err-sim"></p>
                             <input type="hidden" name="ID" value="<?php echo $row['ID']; ?>">
-                            <button type="submit" id="btn-submit" class="btn btn-submit">THÊM</button>
+                            <button type="submit" id="btn-submit" class="btn btn-submit">CẬP NHẬT</button>
                        </div>
                     </form>
                 </div>
