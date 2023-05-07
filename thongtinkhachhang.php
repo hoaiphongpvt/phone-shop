@@ -4,28 +4,32 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $_SESSION['user'];
         $hinhanh = '';
-        uploadHinh($hinhanh);
         $hoten = $_POST['hoten'];
         $ngaysinh = $_POST['ngaysinh'];
         $sdt = $_POST['sdt'];
         $email = $_POST['email'];
         $diachi = $_POST['diachi'];
 
-        $sql = "UPDATE nguoidung SET HOTEN= '$hoten', HINHANH='$hinhanh', NGAYSINH='$ngaysinh', DIENTHOAI='$sdt', DIACHI='$diachi', EMAIL='$email' WHERE ID = ".$user['ID'];
+        if ($_FILES['avt']['error'] === UPLOAD_ERR_OK) {
+            uploadHinh($hinhanh, 'avt');
+            $sql = "UPDATE nguoidung SET HOTEN= '$hoten', HINHANH='$hinhanh', NGAYSINH='$ngaysinh', DIENTHOAI='$sdt', DIACHI='$diachi', EMAIL='$email' WHERE ID = ".$user['ID'];
+        } else {
+            $sql = "UPDATE nguoidung SET HOTEN= '$hoten',  NGAYSINH='$ngaysinh', DIENTHOAI='$sdt', DIACHI='$diachi', EMAIL='$email' WHERE ID = ".$user['ID'];
+        }
         $result = $conn->query($sql);
-        header('Location: thongtinkhachhang.php');
     }
 
-    function uploadHinh(&$hinhanh) {
+    //Hàm upload hình ảnh
+    function uploadHinh(&$hinhanh, $name) {
         $target_dir = "./assets/img/users/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir . basename($_FILES[$name]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     
         // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        $check = getimagesize($_FILES[$name]["tmp_name"]);
         if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        //echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
         } else {
         echo "File is not an image.";
@@ -41,7 +45,7 @@
         }
     
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 5000000) {
+        if ($_FILES[$name]["size"] > 5000000) {
           echo "Sorry, your file is too large.";
           $uploadOk = 0;
         }
@@ -58,8 +62,8 @@
           echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
-          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+          if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
+            echo "The file ". htmlspecialchars( basename( $_FILES[$name]["name"])). " has been uploaded.";
             $hinhanh = $target_file;
           } else {
             echo "Sorry, there was an error uploading your file.";
@@ -208,10 +212,10 @@
                                     <input type="text" id="hinhanh" name="hinhanh" placeholder="Dán link ảnh vào đây" class="edit-info-input">
                                     <p class="has-err" id="msg-hinhanh"></p> -->
                                     <div class="upload-img">
-                                        <img src="<?php echo $row['HINHANH']?>">
+                                        <img src="<?php echo $row['HINHANH']?>" id="preview">
                                         <div>
                                             <label for="fileToUpload">Chọn ảnh đại diện:</label>
-                                            <input type="file" name="fileToUpload" id="fileToUpload">
+                                            <input type="file" name="avt" id="avt" onchange="previewImage(event)">
                                             <p class="has-err" id="err-hinhanh"></p>
                                         </div>
                                     </div>
@@ -297,5 +301,6 @@
     </div>
     </div>
     <script src="./assets/js/chechthongtinkhachhang.js"></script>
+    <script src="./assets/js/preview.js"></script>
 </body>
 </html>
