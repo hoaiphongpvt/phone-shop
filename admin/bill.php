@@ -131,7 +131,7 @@
                                     </select>
                                 </div>
 
-                                <button type="submit" id="btn-submit" class="btn btn-block">OK</button>
+                                <button type="submit" id="btn-submit" class="btn btn-block">Lọc</button>
                             </form>
                         </div>
                         <div class="box-body overflow-scroll">

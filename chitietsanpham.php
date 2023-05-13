@@ -117,7 +117,7 @@
                                 
                             </div>
                             <div class="buy-now">
-                                <button class="btn-buy-now" onclick="order()">MUA NGAY</button>
+                                <button class="btn-buy-now" onclick="alert('Chức năng đang trong quá trình phát triển!')">MUA NGAY</button>
                             </div>
                         </div>
                     </div>
