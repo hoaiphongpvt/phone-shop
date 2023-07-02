@@ -155,7 +155,7 @@ INSERT INTO `giohang` (`ID`, `ID_SP`, `ID_NGUOIDUNG`, `SOLUONG`) VALUES
 CREATE TABLE `hoadon` (
   `ID_HOADON` int(11) NOT NULL,
   `ID_NGUOIDUNG` int(11) NOT NULL,
-  `NGAYLAP` date NOT NULL DEFAULT current_timestamp(),
+  `NGAYLAP` date DEFAULT NULL,
   `NGAYGIAO` date DEFAULT NULL,
   `NGUOINHAN` varchar(255) NOT NULL,
   `SDT` varchar(255) NOT NULL,
@@ -194,7 +194,7 @@ CREATE TABLE `nguoidung` (
   `EMAIL` varchar(255) NOT NULL,
   `DIENTHOAI` varchar(11) NOT NULL,
   `DIACHI` varchar(255) NOT NULL,
-  `NGAYSINH` date NOT NULL DEFAULT current_timestamp(),
+  `NGAYSINH` date NOT NULL,
   `HINHANH` varchar(255) NOT NULL,
   `TENDANGNHAP` varchar(255) NOT NULL,
   `MATKHAU` varchar(255) NOT NULL,
