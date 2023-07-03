@@ -1,0 +1,254 @@
+/* PC */
+@media screen and (min-width: 992px) {
+    .option {
+        display: none;
+    }
+
+    .mobile-header {
+        display: none;
+    }
+}
+
+/* Tablet and mobile */
+@media screen and (max-width: 991px) {
+    .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s ease;
+    }
+
+    .menu-drawer {
+        position: fixed;
+        inset: 0 40% 0 0;
+        background: #FFF;
+        z-index: 1;
+        transform: translateX(-100%);
+        transition: .5s ease;
+    }
+
+    .menu-drawer ul {
+        margin-top: 16px;
+    }
+
+    .menu-drawer ul a {
+        display: block;
+        font-weight: 500;
+        color: #333;
+        padding: 14px 0 14px 14px;
+        font-size: 1.6rem;
+    }
+
+    .menu-drawer ul a:hover {
+        background-color: #f9f9f9;
+    }
+
+    .saperate {
+        border-top: 1px solid #ebebeb;
+    }
+
+    .logo-mobile {
+        width: 28px;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+
+    .header {
+        height: 80px;
+    }
+
+    .header_navbar {
+        display: none;
+    }
+
+    .header_search-button {
+        width: 40px;
+    }
+
+    .header_cart {
+        display: none;
+    }
+
+    #banner {
+        height: 108px;
+        object-fit: cover;
+    }
+
+    #banner-img {
+        object-fit: cover;
+    }
+
+    .locSP {
+        margin-top: 20px;
+    }
+
+    .locSP h3 {
+        flex-shrink: 0;
+        font-size: 1.2rem;
+        display: inline-block;
+    }
+
+    .phone-heading-text {
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 0;
+    }
+
+    .phone-content {
+        margin-top: 0;
+    }
+
+    .phone-img {
+        width: 100%;
+    }
+
+    .phone-phone-item {
+        max-width: 190px;
+        min-height: 420px;
+    }
+
+    .head-footer-policy li span {
+        display: block;
+        text-align: center;
+        font-size: .9rem;
+    }
+
+    .next-page {
+        font-size: 1.6rem;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .head-footer {
+        padding: 15px 10px 4px;
+    }
+
+    .footer {
+        column-gap: 10px;
+        padding: 10px 10px;
+    }
+
+    .footer p {
+        font-size: 1rem;
+        line-height: 14px;
+    }
+
+    .policy-img {
+        max-height: 30px;
+    }
+
+    /* Nav */
+    .logo-mobile {
+        width: 90px;
+        margin-left: 8px;
+        margin-top: 8px;
+    }
+
+    .list-item {
+        margin: 0;
+    }
+    /* Chi tiet san pham */
+    .container-product {
+        padding: 0 12px;
+    }
+    .name-product {
+        margin-top: 14px;
+    }
+    .general-infomation {
+        flex-direction: column;
+    }
+
+    .btn-add-to-cart, .btn-buy-now {
+        width: 100%;
+    }
+
+    .detailed-configuration {
+        flex-direction: column;
+    }
+
+    .detailed-configuration-img {
+        width: 100%;
+    }
+
+    .review h3 {
+        font-size: 1.8rem;
+    }
+
+    .auth-form {
+        width: 370px;
+    }
+
+    .auth-form__controls {
+        flex-direction: column-reverse;
+        row-gap: 14px;
+    }
+    /* Thong tin khach hang */
+    .customer {
+        flex-direction: column;
+        row-gap: 16px;
+    }
+
+    .customer-bought {
+        width: 100%;
+        overflow: auto;
+    }
+
+    /* Loc sp */
+    .kqtimkiem h3 {
+        margin-left: 10px;
+    }
+
+    /* Cart */
+    #cart {
+        min-height: 500px;
+    }
+    .cart-heading {
+        padding: 20px;
+    }
+
+    .cart-heading-item {
+        margin: 0;
+    }
+
+    .cart-body {
+        padding: 10px;
+    }
+
+    .cart-item-img {
+        width: 50px;
+    }
+
+    .cart-body-info {
+        margin: 0 14px 0 5px;
+        padding: 0 5px;
+    }
+
+    .cart-body-item {
+        margin: 0;
+        max-width: 100px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .quantity a {
+        width: 20px;
+        padding: 5px;
+    }
+
+    .btn-delete {
+        min-width: 40px;
+    }
+
+    .total {
+        padding: 20px 20px;
+    }
+
+}

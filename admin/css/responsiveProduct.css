@@ -1,0 +1,19 @@
+/* Mobile */
+@media screen and (max-width: 767px) {
+    .main-title {
+        display: none;
+    }
+    /* Customer */
+    .box-header {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .search-product {
+        display: flex;
+    }
+
+    .box-body {
+        padding: 10px 0;
+    }
+}

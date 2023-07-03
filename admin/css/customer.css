@@ -322,3 +322,11 @@ a {
 .table tr {
 	border-bottom: solid red 1px;
 }
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+    /* Customer */
+    .box-header {
+        font-size: 1rem;
+    }
+}

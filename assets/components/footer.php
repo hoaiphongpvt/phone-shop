@@ -31,7 +31,7 @@
                 <p>Chính sách bảo hành</p>
                 <p>Xem thêm</p>
             </div>
-            <div class="co  l2">
+            <div class="col2">
                 <p>Giới thiệu về công ty</p>
                 <p>Tuyển dụng</p>
                 <p>Gửi ý kiến, khiếu nại</p>

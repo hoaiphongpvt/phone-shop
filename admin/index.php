@@ -45,6 +45,7 @@
     <!-- APP CSS -->
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/responsive.css">
 </head>
 
 <body>

@@ -18,14 +18,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map">
     <link rel="stylesheet" href="./assets/css_js/base.css">
     <link rel="stylesheet" href="./assets/css_js/main.css">
+    <link rel="stylesheet" href="assets/css_js/responsive.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="./assets/css_js/style.js"></script>
 </head>
 <body>
     <div class="app">
-        <header class="header">
-            <div class="grid">
+    <header class="header">
+            <div class="grid">          
                 <nav class="header_navbar">
                     <ul class="header__navbar--list">
                         <li class="list-item list-item-separate">
@@ -55,15 +56,58 @@
                 </nav>
                <div class="header_with-search">
                    <div class="header__logo">
-                    <a href="index.php"><img src="./assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
+                    <a href="index.php"><img src="assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
                    </div>
                    <div class="header_search">
                         <?php include "./assets/components/search.php"?>
                     </div>
-                 <div class="header_cart">
-                    <a href="giohang.html" style="text-decoration: none;"><i class="header_cart-icon ti-shopping-cart"></i></a>
+
+                    <div class="header_cart">
+
+                        <?php 
+                            if ($user) {
+                                echo '<a href="giohang.php" style="text-decoration: none;">
+                                        <i class="header_cart-icon ti-shopping-cart"></i>
+                                    </a>';
+                            } else {
+                                echo '<span onclick="alert(\'Vui lòng đăng nhập\')">
+                                        <i class="header_cart-icon ti-shopping-cart"></i>
+                                    </span>';
+                            }
+                        ?>
+                    </div>
+
+                    <div class="option" id="menu">
+                        <a href="#">
+                            <i class="header-menu ti-menu"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+        </header>
+        <header class="mobile-header">
+            <!-- Overlay -->
+            <div class="menu-overlay" id="menu-overlay"></div>
+            <div class="menu-drawer" id="menu-drawer">
+                <a href="#!"><img src="./assets/img/logo-banner/logotheps.png" alt="Besnik." class="logo-mobile"></a>
+                <ul>
+                    <li><a href="index.php">Trang chủ</a></li>
+                    <li><a href="https://www.facebook.com/">Liên hệ</a></li>
+                    <li><a href="aboutus.php">Giới thiệu</a></li>
+                    <?php 
+                        if ($user) {
+                            echo '<li><a href="giohang.php">Giỏ hàng</a></li>';
+                        } else {
+                            echo '<span onclick="alert(\'Vui lòng đăng nhập\')">
+                                    <a>Giỏ hàng</a>
+                                </span>';
+                        }
+                    ?>
+                    <li class="saperate"></li>
+                    <?php 
+                        include "./assets/components/dangnhapvadangxuat.php";
+                    ?> 
+                </ul>
             </div>
         </header>
         <div class="container">
@@ -99,6 +143,7 @@
         </div>
         <?php require "./assets/components/footer.php"?>
         <script src="./assets/js/timkiem.js"></script>
+        <script src="./assets/js/menuMobile.js"></script>
     </div>
 </body>
 </html>

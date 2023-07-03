@@ -179,16 +179,25 @@ body{
     color: var(--text-color);
     border-right: 1px solid var(--boder-color);
 }
-.header_search-icon{
+.header_search-icon, .header-menu{
     font-size: 1.4rem;
     color: #333;
     padding: 0 8px;
 }
-.header_cart{
-    position: relative;
+.header_cart, .option{
     width: 150px;
     text-align: center;
 }
+
+.option a {
+    text-decoration: none;
+}
+
+.header-menu {
+    color: #FFF;
+    font-size: 1.6rem;
+}
+
 
 /* .header_cart::after {
     position: absolute;
@@ -337,7 +346,7 @@ body{
 }
 .phone-phone-item{
     max-width: 260px;
-    max-height: 460px;
+    max-height: 470px;
     padding:  10px; 
     border-radius: 6px;
     transition: all .3s ease;
@@ -563,6 +572,10 @@ body{
 }
 .cart-button-OK{
     text-align: center;
+}
+
+.cart-item-img {
+    width: 100px;
 }
 /*order*/
 .order-header{

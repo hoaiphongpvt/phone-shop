@@ -1,0 +1,25 @@
+/* PC */
+@media screen and (min-width: 992px) {
+
+}
+
+/* Tablet and mobile */
+@media screen and (max-width: 991px) {
+
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+    .main-title {
+        display: none;
+    }
+    /* Customer */
+    .box-header {
+        font-size: 1rem;
+    }
+}

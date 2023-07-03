@@ -35,6 +35,7 @@
     <link rel="shortcut icon" href="../assets/img/logo-banner/logotheps.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css_js/base.css">
     <link rel="stylesheet" href="../assets/css_js/main.css">
+    <link rel="stylesheet" href="../assets/css_js/responsive.css">
     <title>Thêm khách hàng</title>
 </head>
 <body>

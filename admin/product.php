@@ -22,6 +22,7 @@
     <!-- APP CSS -->
     <link rel="stylesheet" href="./css/grid.css">
     <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/responsiveProduct.css">
 </head>
 <body onload="loadAllProduct()">
     <div class="sidebar">

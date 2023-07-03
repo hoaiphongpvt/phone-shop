@@ -1,0 +1,20 @@
+/* Mobile */
+@media screen and (max-width: 767px) {
+    .main-title {
+        display: none;
+    }
+   
+    .boder {
+        overflow: initial;
+    }
+
+    .form-item {
+        width: 100%;
+        flex-direction: column;
+        row-gap: 5px;
+    }
+
+    .form-item input {
+        width: 290px;
+    }
+}

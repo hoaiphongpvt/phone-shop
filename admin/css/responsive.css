@@ -1,0 +1,6 @@
+/* Mobile */
+@media screen and (max-width: 767px) {
+    .main-title {
+        display: none;
+    }
+}
