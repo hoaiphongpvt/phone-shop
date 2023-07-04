@@ -371,7 +371,8 @@ body{
     line-height: 30px;
 }
 .phone-name a{
-    color: #000;
+    color: #333;
+    font-weight: 500;
     list-style: none;
     text-decoration: none;
 }
@@ -653,6 +654,11 @@ body{
 .icon-page:hover,
 .page:hover {
     opacity: 0.8;
+}
+
+/* About */
+.about {
+    padding: 0 20px;
 }
 /*Giỏ hàng*/
 

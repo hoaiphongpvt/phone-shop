@@ -28,9 +28,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/img/logo-banner/logotheps.png" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css_js/base.css">
-    <link rel="stylesheet" href="../assets/css_js/main.css">
-    <link rel="stylesheet" href="../assets/css_js/responsive.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
     <title>Đăng nhập admin</title>
 </head>
 <body>

@@ -52,11 +52,115 @@
     .logo-mobile {
         width: 28px;
     }
+
+    /* About */
+    .aboutus {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ab_contact-heading {
+        margin-bottom: 18px;
+    }
+
+    .ab_group {
+        margin-bottom: 16px;
+    }
+
+    .ab_text {
+        max-width: 90%;
+    }
+
+    #cart {
+        min-height: 100vw;
+    }
+
+    /* Loc sp */
+    .kqtimkiem h3 {
+        margin-left: 10px;
+    }
+
+    .phone-parameter {
+        margin-left: 0;
+    }
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) and (max-width: 991px) {
+    .header_navbar {
+        padding: 6px 50px;
+    }
 
+    .header_with-search {
+        padding-bottom: 10px;
+    }
+
+    .option {
+        display: none;
+    }
+
+    #banner {
+        height: 210px;
+    }
+    
+    #banner-img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .phone-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+
+    .phone-phone-item {
+        max-width: 230px;
+        max-height: 530px;
+    }
+
+    .detailed-configuration-info h3 {
+        line-height: 1.2;
+    }
+
+    .head-footer {
+        padding: 10px 50px 1px 50px;
+    }
+
+    .foot-footer {
+        padding: 0 50px;
+    }
+
+    /* Cart */
+    
+    .cart-body {
+        padding-left: 0;
+    }
+
+    .cart-body-item {
+        margin: 10px 0 10px 60px;
+    }
+
+    .cart-body-info {
+        margin: 0 100px 0 24px;
+    }
+
+    /* Customer */
+    .customer {
+        margin: 0;
+        flex-direction: column;
+    }
+
+    .customer-order {
+        max-width: 100%;
+    }
+
+    .container-product {
+        padding: 0 20px;
+    }
 }
 
 /* Mobile */
@@ -65,9 +169,14 @@
     .header {
         height: 80px;
     }
+    
 
     .header_navbar {
         display: none;
+    }
+
+    .header__logo {
+        width: auto;
     }
 
     .header_search-button {
@@ -103,6 +212,10 @@
     }
 
     .phone-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
         margin-top: 0;
     }
 
@@ -113,6 +226,11 @@
     .phone-phone-item {
         max-width: 190px;
         min-height: 420px;
+    }
+
+    .phone-name {
+        margin: 8px 0;
+        line-height: 1;
     }
 
     .head-footer-policy li span {
@@ -201,15 +319,8 @@
         overflow: auto;
     }
 
-    /* Loc sp */
-    .kqtimkiem h3 {
-        margin-left: 10px;
-    }
-
     /* Cart */
-    #cart {
-        min-height: 500px;
-    }
+
     .cart-heading {
         padding: 20px;
     }
@@ -249,6 +360,25 @@
 
     .total {
         padding: 20px 20px;
+    }
+
+    /* About */
+    .aboutus {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ab_contact-heading {
+        margin-bottom: 18px;
+    }
+
+    .ab_group {
+        margin-bottom: 16px;
+    }
+
+    .ab_text {
+        max-width: 90%;
     }
 
 }
