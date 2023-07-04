@@ -175,8 +175,12 @@
         display: none;
     }
 
-    .header__logo {
-        width: auto;
+    .header__logo, .header__logo-img {
+        width: 80px;
+    }
+
+    .option {
+        width: 80px;
     }
 
     .header_cart {
