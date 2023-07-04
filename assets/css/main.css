@@ -781,7 +781,6 @@ body{
 .customer {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
 }
 .customer-infomation {
     background-color: #f8f7f7;
