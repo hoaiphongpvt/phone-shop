@@ -31,91 +31,11 @@
 </head>
 <body>
     <div class="app">
-    <header class="header">
-            <div class="grid">          
-                <nav class="header_navbar">
-                    <ul class="header__navbar--list">
-                        <li class="list-item list-item-separate">
-                            <a href="index.php" class="list-item-iconlink">Trang chủ</a>
-                        </li>
-                        <li class="list-item">
-                            <span class="list-item-title">Liên hệ</span>
-                            <a href="https://www.facebook.com/" class="list-item-iconlink">
-                                <i  class="ti-facebook list-item-icon"></i>
-                            </a>
-                            <a href="https://www.google.com/gmail/" class="list-item-iconlink">
-                                <i  class="ti-email list-item-icon"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="header__navbar--list">
-                        <li class="list-item">
-                            <a href="aboutus.php" class="list-item-iconlink">
-                                <i class="ti-info list-item-icon"></i>
-                                Giới thiệu
-                            </a>
-                        </li>
-                        <?php 
-                           include "./assets/components/dangnhapvadangxuat.php";
-                        ?> 
-                    </ul>
-                </nav>
-               <div class="header_with-search">
-                   <div class="header__logo">
-                    <a href="index.php"><img src="assets/img/logo-banner/logotheps.png" class="header__logo-img"></a>
-                   </div>
-                   <div class="header_search">
-                        <?php include "./assets/components/search.php"?>
-                    </div>
-
-                    <div class="header_cart">
-
-                        <?php 
-                            if ($user) {
-                                echo '<a href="giohang.php" style="text-decoration: none;">
-                                        <i class="header_cart-icon ti-shopping-cart"></i>
-                                    </a>';
-                            } else {
-                                echo '<span onclick="alert(\'Vui lòng đăng nhập\')">
-                                        <i class="header_cart-icon ti-shopping-cart"></i>
-                                    </span>';
-                            }
-                        ?>
-                    </div>
-
-                    <div class="option" id="menu">
-                        <a href="#">
-                            <i class="header-menu ti-menu"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <header class="mobile-header">
-            <!-- Overlay -->
-            <div class="menu-overlay" id="menu-overlay"></div>
-            <div class="menu-drawer" id="menu-drawer">
-                <a href="#!"><img src="./assets/img/logo-banner/logotheps.png" alt="Besnik." class="logo-mobile"></a>
-                <ul>
-                    <li><a href="index.php">Trang chủ</a></li>
-                    <li><a href="https://www.facebook.com/">Liên hệ</a></li>
-                    <li><a href="aboutus.php">Giới thiệu</a></li>
-                    <?php 
-                        if ($user) {
-                            echo '<li><a href="giohang.php">Giỏ hàng</a></li>';
-                        } else {
-                            echo '<span onclick="alert(\'Vui lòng đăng nhập\')">
-                                    <a>Giỏ hàng</a>
-                                </span>';
-                        }
-                    ?>
-                    <li class="saperate"></li>
-                    <?php 
-                        include "./assets/components/dangnhapvadangxuat.php";
-                    ?> 
-                </ul>
-            </div>
-        </header>
+        <!-- Header -->
+        <?php 
+            include './assets/components/header.php';
+            include './assets/components/headerMobile.php';
+        ?>
         <div class="container-product">
             <div class="grid">
                 <!-- <div id="banner">
