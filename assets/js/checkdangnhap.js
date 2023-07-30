@@ -1,33 +1,28 @@
-const tendangnhap = document.getElementById('tendangnhap')
-const matkhau = document.getElementById('matkhau')
-const btnDangnhap = document.getElementById('btn-dangnhap');
-const msgTendangnhap = document.getElementById('err-tendangnhap')
-const msgMatkhau = document.getElementById('err-matkhau')
-const msg = document.getElementById('msg')
+$(document).ready(function() {
+    $("#btn-dangnhap").click(function(e) {
+        if ($("#tendangnhap").val() == '') {
+            $("#err-tendangnhap").text("Vui lòng nhập tên đăng nhập!")
+            e.preventDefault()
+        }
 
-btnDangnhap.addEventListener('click', (e) => {
-    if (tendangnhap.value == "") {
-        msgTendangnhap.innerText = "Vui lòng nhập tên đăng nhập!"
-        e.preventDefault()
-    } 
+        if ($("#matkhau").val().length < 6) {
+            $("#err-matkhau").text("Mật khẩu phải lớn hơn 6 kí tự!")
+            e.preventDefault()
+        }
 
-    if (matkhau.value.length < 6) {
-        msgMatkhau.innerText = "Mật khẩu phải lớn hơn 6 kí tự"
-        e.preventDefault()
-    }
+        if ($("#matkhau").val() == '') {
+            $("#err-matkhau").text("Vui lòng nhập mật khẩu!")
+            e.preventDefault()
+        }
 
-    if (matkhau.value == "") {
-        msgMatkhau.innerText = "Vui lòng nhập mật khẩu!"
-        e.preventDefault()
-    }
-})
+        $("#tendangnhap").focus(function() {
+            $("#err-tendangnhap").text("")
+            $("#msg").text("")
+        })
 
-tendangnhap.addEventListener('input', () => {
-    msgTendangnhap.innerText = ""
-    msg.innerText = ""
-})
-
-matkhau.addEventListener('input', () => {
-    msgMatkhau.innerText = ""
-    msg.innerText = ""
+        $("#matkhau").focus(function() {
+            $("#err-matkhau").text("")
+            $("#msg").text("")
+        })
+    })
 })

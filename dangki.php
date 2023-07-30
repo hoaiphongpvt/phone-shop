@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <title>Đăng kí</title>
 </head>
 <body>
@@ -64,7 +65,7 @@
                                 <p class="has-err" id="err-diachi"></p>
                             </div>
                             <div class="auth-form__group">
-                                <input type="date" id="diachi" class="auth-form__input" name="ngaysinh" placeholder="Ngày sinh">
+                                <input type="date" id="ngaysinh" class="auth-form__input" name="ngaysinh" placeholder="Ngày sinh">
                                 <p class="has-err" id="err-ngaysinh"></p>
                             </div>
                             <div class="auth-form__group">

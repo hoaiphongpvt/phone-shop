@@ -1,10 +1,13 @@
-const btnLoc = document.getElementById('btn-loc')
-const nsx = document.getElementById('nsx')
-const gia =  document.getElementById('gia')
+$(document).ready(function() {
+    const $btnLoc = $("#btn-loc")
+    const $nsx = $("#nsx")
+    const $gia = $("#gia")
 
-btnLoc.addEventListener('click', (e) => {
-    if (nsx.value == "null" && gia.value == "null") {
-        alert('Bạn phải chọn thông tin cần lọc!')
-        e.preventDefault()
-    }
+    $btnLoc.click(function(e) {
+        if ($nsx.val() == 'null' && $gia.val() == 'null') {
+            alert('Bạn phải chọn thông tin cần lọc!')
+            e.preventDefault()
+        }
+    })
+
 })

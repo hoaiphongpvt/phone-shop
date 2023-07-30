@@ -88,6 +88,7 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="./assets/js/style.js"></script>
 </head>
 <body>
@@ -265,7 +266,7 @@
         ?>
     </div>
     </div>
-    <script src="./assets/js/chechthongtinkhachhang.js"></script>
+    <script src="./assets/js/checkthongtinkhachhang.js"></script>
     <script src="./assets/js/preview.js"></script>
     <script src="./assets/js/menuMobile.js"></script>
 </body>

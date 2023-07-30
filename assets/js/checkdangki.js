@@ -1,108 +1,100 @@
-const hoten = document.getElementById('hoten')
-const email = document.getElementById('email')
-const sdt = document.getElementById('sdt')
-const diachi = document.getElementById('diachi')
-const tendangnhap = document.getElementById('tendangnhap')
-const matkhau = document.getElementById('matkhau')
-const xnMatkhau = document.getElementById('re-matkhau')
-const cbDieukhoan = document.getElementById('dieukhoan')
-const btnDangki = document.getElementById('btn-dangki')
-const errHoten = document.getElementById('err-hoten')
-const errEmail = document.getElementById('err-email')
-const errSdt = document.getElementById('err-sdt')
-const errDiachi = document.getElementById('err-diachi')
-const errTendangnhap = document.getElementById('err-tendangnhap')
-const errMatkhau = document.getElementById('err-matkhau')
-const errXnMatkhau = document.getElementById('err-re-matkhau')
-const errDieukhoan = document.getElementById('err-dieukhoan')
-const hinhanh = document.getElementById('fileToUpload')
-const errHinhanh = document.getElementById('err-hinhanh')
+$(document).ready(function() {
+    $("#btn-dangki").click(function(e) {
+        if ($("#hoten").val() == '') {
+            $("#err-hoten").text('Vui lòng nhập họ tên!')
+            e.preventDefault()
+        }
 
-btnDangki.addEventListener('click', (e) => {
+        if ($("#email").val() == '') {
+            $("#err-email").text('Vui lòng nhập email!')
+            e.preventDefault()
+        }
 
-    if (hoten.value == '') {
-        errHoten.innerText = "Vui lòng nhập họ tên!"
-        e.preventDefault()
-    }
+        if ($("#sdt").val().length < 10 || $("#sdt").val().length > 11) {
+            $("#err-sdt").text('Số điện thoại phải là 10 hoặc 11 số!')
+            e.preventDefault()
+        }
 
-    if (email.value == '') {
-        errEmail.innerText = "Vui lòng nhập email!"
-        e.preventDefault()
-    }
+        if ($("#sdt").val().charAt(0) != '0') {
+            $("#err-sdt").text('Số điện thoại phải bắt đầu bằng số 0!')
+            e.preventDefault()
+        }
 
-    if (sdt.value == '') {
-        errSdt.innerText = "Vui lòng nhập số điện thoại!"
-        e.preventDefault()
-    }
+        if ($("#sdt").val() == '') {
+            $("#err-sdt").text('Vui lòng nhập số điện thoại!')
+            e.preventDefault()
+        }
 
-    if(sdt.value.length < 10 || sdt.value.length > 11) {
-        errSdt.innerText = "Số điện thoại phải là 10 hoặc 11 số!"
-        e.preventDefault()
-    }
+        if ($("#diachi").val() == '') {
+            $("#err-diachi").text('Vui lòng nhập địa chỉ!')
+            e.preventDefault()
+        }
 
-    if (sdt.value.charAt(0) != '0') {
-        errSdt.innerText = "Số điện thoại phải bắt đầu bằng số 0!"
-        e.preventDefault()
-    }
+        if ($("#tendangnhap").val() == '') {
+            $("#err-tendangnhap").text('Vui lòng nhập tên đăng nhập!')
+            e.preventDefault()
+        }
 
-    if (diachi.value == '') {
-        errDiachi.innerText = "Vui lòng nhập địa chỉ"
-        e.preventDefault()
-    }
+        if ($("#ngaysinh").val() == '') {
+            $("#err-ngaysinh").text('Vui lòng chọn ngày sinh!')
+            e.preventDefault()
+        }
 
-    if (tendangnhap.value == '') {
-        errTendangnhap.innerText = "Vui lòng nhập tên đăng nhập"
-        e.preventDefault()
-    } 
+        if ($("#matkhau").val().length < 6) {
+            $("#err-matkhau").text('Mật khẩu phải lớn hơn 6 kí tự!')
+            e.preventDefault()
+        }
 
-    if (matkhau.value.length < 6) {
-        errMatkhau.innerText = "Mật khẩu phải lớn hơn 6 kí tự"
-        e.preventDefault()
-    }
+        if ($("#matkhau").val() == '') {
+            $("#err-matkhau").text('Vui lòng nhập mật khẩu!')
+            e.preventDefault()
+        }
 
-    if (matkhau.value == '') {
-        errMatkhau.innerText = "Vui lòng nhập mật khẩu"
-        e.preventDefault()
-    } 
+        if ($("#re-matkhau").val() != $("#matkhau")) {
+            $("#err-re-matkhau").text('Mật khẩu nhập lại không chính xác!')
+            e.preventDefault()
+        }
 
-    if (xnMatkhau.value != matkhau.value) {
-        errXnMatkhau.innerText = "Mật khẩu nhập lại không chính xác!"
-        e.preventDefault()
-    }
+        if ($("#re-matkhau").val() == '') {
+            $("#err-re-matkhau").text('Vui lòng nhập lại mật khẩu!')
+            e.preventDefault()
+        }
 
-    if (!cbDieukhoan.checked) {
-        errDieukhoan.innerText = "Bạn phải đồng ý với tất cả điều khoản và dịch vụ!"
-        e.preventDefault()
-    }
+        if (!$("#dieukhoan").prop("checked")) {
+            $("#err-dieukhoan").text('Bạn phải đồng ý với các điều khoản và dịch vụ!')
+            e.preventDefault()
+        }
 
-    if (!hinhanh.value) {
-        errHinhanh.innerText = "Vui lòng chọn hình ảnh!"
-        e.preventDefault()
-    }
+        $("#hoten").focus(function() {
+            $("#err-hoten").text("")
+        })
 
-    console.log(hinhanh)
-})
+        $("#email").focus(function() {
+            $("#err-email").text("")
+        })
 
-hoten.addEventListener('input', () => {
-    errHoten.innerText = ""
-})
+        $("#sdt").focus(function() {
+            $("#err-sdt").text("")
+        })
 
-email.addEventListener('input', () => {
-    errEmail.innerText = ""
-})
+        $("#ngaysinh").focus(function() {
+            $("#err-ngaysinh").text("")
+        })
 
-sdt.addEventListener('input', () => {
-    errSdt.innerText = ""
-})
+        $("#tendangnhap").focus(function() {
+            $("#err-tendangnhap").text("")
+        })
 
-diachi.addEventListener('input', () => {
-    errDiachi.innerText = ""
-})
+        $("#matkhau").focus(function() {
+            $("#err-matkhau").text("")
+        })
 
-tendangnhap.addEventListener('input', () => {
-    errTendangnhap.innerText = ""
-})
+        $("#re-matkhau").focus(function() {
+            $("#err-re-matkhau").text("")
+        })
 
-matkhau.addEventListener('input', () => {
-    errMatkhau.innerText = ""
+        $("#dieukhoan").on('change', function() {
+            $("#err-dieukhoan").text("")
+        })
+    })
 })

@@ -1,10 +1,12 @@
-const formSearch = document.getElementById('search')
-const input = document.getElementById('input')
-const btnSearch = document.getElementById('btnSearch')
-
-btnSearch.addEventListener('click', (e) => {
-    if (!input.value) {
-        alert("Bạn phải nhập thông tin tìm kiếm")
-        e.preventDefault()
-    }
-})
+$(document).ready(function() {
+    const $input = $('#input');
+    const $btnSearch = $('#btnSearch');
+  
+    $btnSearch.click(function(e) {
+      if (!$input.val()) {
+        alert("Bạn phải nhập thông tin tìm kiếm");
+        e.preventDefault();
+      }
+    });
+  }
+);
