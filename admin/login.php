@@ -1,5 +1,5 @@
 <?php
-    include "../connect.php";
+    include "../functions/connect.php";
 
     if (isset($_POST['tendangnhap']) && isset($_POST['matkhau'])) {
         $tendangnhap = $_POST['tendangnhap'];

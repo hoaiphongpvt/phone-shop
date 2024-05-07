@@ -44,6 +44,6 @@
         $result = mysqli_query($conn, $sql);
 
         //Trở về giỏ hàng
-        header("Location: giohang.php");
+        header("Location: ../giohang.php");
     }
 ?>

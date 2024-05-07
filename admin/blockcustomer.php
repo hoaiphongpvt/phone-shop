@@ -1,5 +1,5 @@
 <?php 
-    include "../connect.php";
+    include "../functions/connect.php";
 
     if (isset($_GET['idKH'])) {
         $id = $_GET['idKH'];

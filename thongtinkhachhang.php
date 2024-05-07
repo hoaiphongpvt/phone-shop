@@ -1,5 +1,5 @@
 <?php 
-    include "connect.php";
+    include "./functions/connect.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $_SESSION['user'];

@@ -1,5 +1,5 @@
 <?php 
-    require "connect.php";
+    require "./functions/connect.php";
     include "./assets/components/formatCurrency.php";
 
     if (isset($_GET['id'])) {

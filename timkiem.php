@@ -1,5 +1,5 @@
 <?php 
-    require "connect.php";
+    require "./functions/connect.php";
     if (!empty($_GET['keyword'])) {
         $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE TEN LIKE '%".$_GET['keyword']."%'";
         $result = $conn->query($sql);

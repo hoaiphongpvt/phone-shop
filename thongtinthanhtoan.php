@@ -1,5 +1,4 @@
     <?php 
-        // include "connect.php"
         $sql = "SELECT * FROM nguoidung WHERE ID = ".$user['ID'];
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
@@ -12,7 +11,7 @@
             <div class="modal_overlay"></div>
                 <div class="modal_body">   
                     <div class="auth-form">
-                        <form action="thanhtoan.php" method="POST" class="auth-form__container">
+                        <form action="./functions/thanhtoan.php" method="POST" class="auth-form__container">
                             <div class="auth-form__header">
                                 <h3 class="auth-form__heading">XÁC NHẬN THÔNG TIN</h3>
                             </div>

@@ -1,5 +1,5 @@
 <?php 
-    include "connect.php";
+    include "./functions/connect.php";
     include "./assets/components/formatCurrency.php";
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -87,7 +87,7 @@
                                             <a href="capnhatsoluongsanpham.php?idsanpham='.$row['ID_SP'].'&idnguoidung='.$row['ID_NGUOIDUNG'].'&value=+">+</a>
                                         </div>
                                         <div>
-                                            <a href="xoasanphamgiohang.php?idSP='.$row['ID'].'&idND='.$user['ID'].'"><button class="btn btn-delete">Xóa</button></a>
+                                            <a href="./functions/xoasanphamgiohang.php?idSP='.$row['ID'].'&idND='.$user['ID'].'"><button class="btn btn-delete">Xóa</button></a>
                                         </div>
                                     </div>
                                 </div>

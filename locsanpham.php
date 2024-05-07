@@ -1,5 +1,5 @@
 <?php 
-    include "connect.php";
+    include "./functions/connect.php";
     
     if (isset($_GET['nsx']) && $_GET['gia'] == "null") {
         $nsx = $_GET['nsx'];

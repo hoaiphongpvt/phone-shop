@@ -1,5 +1,5 @@
 <?php 
-    include "../connect.php";
+    include "../functions/connect.php";
     include "../assets/components/formatCurrency.php";
 
     //Lấy thông tin admin
